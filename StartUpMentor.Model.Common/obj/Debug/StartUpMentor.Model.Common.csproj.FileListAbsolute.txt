@@ -1,0 +1,4 @@
+d:\users\dino\documents\visual studio 2013\Projects\StartUpMentor\StartUpMentor.Model.Common\bin\Debug\StartUpMentor.Model.Common.dll
+d:\users\dino\documents\visual studio 2013\Projects\StartUpMentor\StartUpMentor.Model.Common\bin\Debug\StartUpMentor.Model.Common.pdb
+d:\users\dino\documents\visual studio 2013\Projects\StartUpMentor\StartUpMentor.Model.Common\obj\Debug\StartUpMentor.Model.Common.dll
+d:\users\dino\documents\visual studio 2013\Projects\StartUpMentor\StartUpMentor.Model.Common\obj\Debug\StartUpMentor.Model.Common.pdb
