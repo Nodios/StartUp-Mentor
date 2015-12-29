@@ -17,8 +17,10 @@ namespace StartUpMentor.Model
 
         public string UserId { get; set; }
         public Guid QuestionId { get; set; }
+        public Guid VideoId { get; set; }
 
         public virtual IUser User { get; set; }
         public virtual IQuestion Question { get; set; }
+        public virtual IVideo Video { get; set; }
     }
 }

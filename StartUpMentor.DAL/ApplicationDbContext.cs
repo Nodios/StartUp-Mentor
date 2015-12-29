@@ -34,21 +34,26 @@ namespace StartUpMentor.DAL
         public DbSet<QuestionEntity> Questions { get; set; }
         public DbSet<VideoEntity> Videos { get; set; }
 
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+        }
+
         // Summary:
         //     A DbSet represents the collection of all entities in the context, or that
         //     can be queried from the database, of a given type. DbSet objects are created
         //     from a DbContext using the DbContext.Set method.
         //
         // Type parameters:
-        //   TEntity:
+        //   T:
         //     The type that defines the set.
         //
         // Remarks:
         //     Note that DbSet does not support MEST (Multiple Entity Sets per Type) meaning
         //     that there is always a one-to-one correlation between a type and a set
-        public override DbSet<TEntity> Set<TEntity>()
+        public override DbSet<T> Set<T>()
         {
-            return base.Set<TEntity>();
+            return base.Set<T>();
         }
 
         public override int SaveChanges()
