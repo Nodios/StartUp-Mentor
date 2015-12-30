@@ -8,5 +8,6 @@ namespace StartUpMentor.Repository.Common
 {
     public interface IVideoRepository
     {
+        //TODO: Figure out how to do connect this with YouTube API
     }
 }

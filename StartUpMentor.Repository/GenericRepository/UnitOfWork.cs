@@ -38,6 +38,41 @@ namespace StartUpMentor.Repository.GenericRepository
                 throw ex;
             }
         }
+        public Task<T> UpdateWithAddAsync<T>(T entity) where T : class
+        {
+            try
+            {
+                DbEntityEntry entry = Context.Entry<T>(entity);
+                Context.Set<T>().Add(entity);
+                entry.State = EntityState.Modified;
+
+                return Task.FromResult<T>(entry as T);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public Task<T> UpdateWithAddAsync<T>(T entity, params System.Linq.Expressions.Expression<Func<T, object>>[] entityParameters) where T : class
+        {
+            try
+            {
+                DbEntityEntry entry = Context.Entry<T>(entity);
+                Context.Set<T>().Add(entity);
+                entry.State = EntityState.Modified;
+                foreach (var p in entityParameters)
+                {
+                    Context.Entry<T>(entity).Property(p).IsModified = true;
+                }
+
+                return Task.FromResult<T>(entry as T);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
         public Task<T> UpdateAsync<T>(T entity) where T : class
         {
@@ -112,5 +147,8 @@ namespace StartUpMentor.Repository.GenericRepository
         {
             Context.Dispose();
         }
+
+
+        
     }
 }

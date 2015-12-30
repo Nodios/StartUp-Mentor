@@ -46,12 +46,12 @@ namespace StartUpMentor.Repository.GenericRepository
             return await Context.Set<T>().FirstAsync(match);
         }
 
-        public async Task<IEnumerable<T>> GetAsync<T>(Expression<Func<T, bool>> match) where T : class
+        public async Task<IEnumerable<T>> GetRangeAsync<T>(Expression<Func<T, bool>> match) where T : class
         {
             return await Context.Set<T>().Where(match).ToListAsync();
         }
 
-        public async Task<IEnumerable<T>> GetAsync<T>() where T : class
+        public async Task<IEnumerable<T>> GetRangeAsync<T>() where T : class
         {
             return await Context.Set<T>().ToListAsync();
         }

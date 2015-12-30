@@ -70,6 +70,10 @@
     <Compile Include="Video.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\StartUpMentor.DAL\StartUpMentor.DAL.csproj">
+      <Project>{49f24980-abaa-4511-aa87-463755c8e427}</Project>
+      <Name>StartUpMentor.DAL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\StartUpMentor.Model.Common\StartUpMentor.Model.Common.csproj">
       <Project>{9b74e98e-20cb-4a55-a435-6509426f40ef}</Project>
       <Name>StartUpMentor.Model.Common</Name>
