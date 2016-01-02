@@ -101,7 +101,7 @@ namespace StartUpMentor.Repository
             }
         }
 
-        public async Task<int> Deleteasync(Guid id)
+        public async Task<int> DeleteAsync(Guid id)
         {
             try
             {

@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using StartUpMentor.DAL.Models;
 using StartUpMentor.Common;
+using StartUpMentor.DAL.Mapping;
 
 namespace StartUpMentor.DAL
 {
@@ -16,14 +17,16 @@ namespace StartUpMentor.DAL
     {
         #region Constructors
         public ApplicationDbContext()
-            : base(ConnectionStrings.TEST_DB_CONNECTION, throwIfV1Schema: false)
+            : base(ConnectionStrings.CONNECTION, throwIfV1Schema: false)
         {
             base.RequireUniqueEmail = true;
+            Database.SetInitializer(new StartUpMentorInitializer());
         }
         public ApplicationDbContext(string connection)
             : base(connection, throwIfV1Schema: false)
         {
             base.RequireUniqueEmail = true;
+            Database.SetInitializer(new StartUpMentorInitializer());
         }
         #endregion
 
@@ -36,6 +39,14 @@ namespace StartUpMentor.DAL
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            modelBuilder.Configurations.Add(new AnswerMap());
+            modelBuilder.Configurations.Add(new FieldMap());
+            modelBuilder.Configurations.Add(new InfoMap());
+            modelBuilder.Configurations.Add(new QuestionMap());
+            modelBuilder.Configurations.Add(new UserMap());
+
+            modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+
             base.OnModelCreating(modelBuilder);
         }
 
@@ -56,6 +67,7 @@ namespace StartUpMentor.DAL
             return base.Set<T>();
         }
 
+        //Check for model validation errors
         public override int SaveChanges()
         {
             try

@@ -1,4 +1,4 @@
-d:\users\dino\documents\visual studio 2013\Projects\StartUpMentor\StartUpMentor.Common\bin\Debug\StartUpMentor.Common.dll
-d:\users\dino\documents\visual studio 2013\Projects\StartUpMentor\StartUpMentor.Common\bin\Debug\StartUpMentor.Common.pdb
-d:\users\dino\documents\visual studio 2013\Projects\StartUpMentor\StartUpMentor.Common\obj\Debug\StartUpMentor.Common.dll
-d:\users\dino\documents\visual studio 2013\Projects\StartUpMentor\StartUpMentor.Common\obj\Debug\StartUpMentor.Common.pdb
+d:\Users\Dino\documents\visual studio 2013\Projects\StartUpMentor\StartUpMentor.Common\bin\Debug\StartUpMentor.Common.dll
+d:\Users\Dino\documents\visual studio 2013\Projects\StartUpMentor\StartUpMentor.Common\bin\Debug\StartUpMentor.Common.pdb
+d:\Users\Dino\documents\visual studio 2013\Projects\StartUpMentor\StartUpMentor.Common\obj\Debug\StartUpMentor.Common.dll
+d:\Users\Dino\documents\visual studio 2013\Projects\StartUpMentor\StartUpMentor.Common\obj\Debug\StartUpMentor.Common.pdb

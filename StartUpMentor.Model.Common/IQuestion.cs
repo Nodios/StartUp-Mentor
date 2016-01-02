@@ -14,11 +14,12 @@ namespace StartUpMentor.Model.Common
         string UserName { get; set; }
         DateTime Date { get; set; }
 
-        //One to one - Question can be related to one Field
+        //FK for Field
         Guid FieldId { get; set; }
+        //One to one - Question can be related to one Field
         IField Field { get; set; }
 
-        //One to many - Question can have many Answers
+        //One to many - One Question can have many Answers
         ICollection<IAnswer> Answers { get; set; }
     }
 }

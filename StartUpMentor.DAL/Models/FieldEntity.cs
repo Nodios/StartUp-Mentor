@@ -1,18 +1,16 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace StartUpMentor.DAL.Models
 {
-    public class FieldEntity
+    public partial class FieldEntity
     {
         public Guid Id { get; set; }
         public string Name { get; set; }
 
+        //Field can have many users - must define UserField table
         public virtual ICollection<UserEntity> Users { get; set; }
+        //Field can contain many questions
         public virtual ICollection<QuestionEntity> Questions { get; set; }
-        public virtual ICollection<VideoEntity> Videos { get; set; }
     }
 }

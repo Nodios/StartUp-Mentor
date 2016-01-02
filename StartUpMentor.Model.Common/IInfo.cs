@@ -14,6 +14,9 @@ namespace StartUpMentor.Model.Common
         string Email { get; set; }
         string Contact { get; set; }
 
+        //FK for user
+        string UserId { get; set; }
+
         //One to one
         IUser User { get; set; }
     }

@@ -27,6 +27,6 @@ namespace StartUpMentor.Repository.Common
         Task<int> AddAsync(IQuestion question);
         Task<int> UpdateAsync(IQuestion question);
         Task<int> DeleteAsync(IQuestion question);
-        Task<int> Deleteasync(Guid id);
+        Task<int> DeleteAsync(Guid id);
     }
 }

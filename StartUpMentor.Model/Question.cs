@@ -15,13 +15,12 @@ namespace StartUpMentor.Model
         public string UserName { get; set; }
         public DateTime Date { get; set; }
 
-        //One to one - Question can be related to one Field
+        //FK for Field
         public Guid FieldId { get; set; }
-        public IField Field { get; set; }
-        public Guid VideoId { get; set; }
-        public IVideo Video { get; set; }
+        //One to one - Question can be related to one Field
+        public virtual IField Field { get; set; }
 
-        //One to many - Question can have many Answers
-        public ICollection<IAnswer> Answers { get; set; }
+        //One to many - One Question can have many Answers
+        public virtual ICollection<IAnswer> Answers { get; set; }
     }
 }

@@ -38,12 +38,12 @@ namespace StartUpMentor.Model.AutoMapperModelLayerMapping
             Mapper.CreateMap<Video, IVideo>().ReverseMap();
         }
 
-        public override string ProfileName
-        {
-            get
-            {
-                return this.GetType().Name;
-            }
-        }
+        //public override string ProfileName
+        //{
+        //    get
+        //    {
+        //        return this.GetType().Name;
+        //    }
+        //}
     }
 }

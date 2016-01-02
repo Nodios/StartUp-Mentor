@@ -54,13 +54,13 @@ namespace StartUpMentor.DAL
 
             context.SaveChanges();
 
-            QuestionEntity question1 = context.Questions.Where(q => q.Title == "How to C#?").First();
-            question1.Video = new VideoEntity()
-            {
-                Id = question1.Id,
-                Length = "6:00",
-                UploadDate = DateTime.Parse("2015/12/19")
-            };
+            //QuestionEntity question1 = context.Questions.Where(q => q.Title == "How to C#?").First();
+            //question1.Video = new VideoEntity()
+            //{
+            //    Id = question1.Id,
+            //    Length = "6:00",
+            //    UploadDate = DateTime.Parse("2015/12/19")
+            //};
         }
     }
 }

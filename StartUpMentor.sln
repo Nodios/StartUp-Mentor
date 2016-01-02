@@ -17,6 +17,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StartUpMentor.Repository.Co
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StartUpMentor.Repository", "StartUpMentor.Repository\StartUpMentor.Repository.csproj", "{41D93BA3-5A6F-47C2-883B-E68C07BA9A15}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StartUpMentor.Service.Common", "StartUpMentor.Service.Common\StartUpMentor.Service.Common.csproj", "{DD86BFEC-EAF4-4235-876E-3564C86740EF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StartUpMentor.Service", "StartUpMentor.Service\StartUpMentor.Service.csproj", "{E97EC1E5-637A-4255-9C5E-94A580EF3F02}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +55,14 @@ Global
 		{41D93BA3-5A6F-47C2-883B-E68C07BA9A15}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{41D93BA3-5A6F-47C2-883B-E68C07BA9A15}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{41D93BA3-5A6F-47C2-883B-E68C07BA9A15}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DD86BFEC-EAF4-4235-876E-3564C86740EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DD86BFEC-EAF4-4235-876E-3564C86740EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DD86BFEC-EAF4-4235-876E-3564C86740EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DD86BFEC-EAF4-4235-876E-3564C86740EF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E97EC1E5-637A-4255-9C5E-94A580EF3F02}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E97EC1E5-637A-4255-9C5E-94A580EF3F02}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E97EC1E5-637A-4255-9C5E-94A580EF3F02}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E97EC1E5-637A-4255-9C5E-94A580EF3F02}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

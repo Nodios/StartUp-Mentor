@@ -15,12 +15,14 @@ namespace StartUpMentor.Model
         public string UserName { get; set; }
         public DateTime Date { get; set; }
 
+        //FK for User
         public string UserId { get; set; }
-        public Guid QuestionId { get; set; }
-        public Guid VideoId { get; set; }
-
+        //One to many - One answer can be posted by a single user
         public virtual IUser User { get; set; }
+
+        //FK for Question
+        public Guid QuestionId { get; set; }
+        //One Answer is related to one Question
         public virtual IQuestion Question { get; set; }
-        public virtual IVideo Video { get; set; }
     }
 }

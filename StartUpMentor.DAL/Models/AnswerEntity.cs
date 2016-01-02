@@ -1,12 +1,9 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace StartUpMentor.DAL.Models
 {
-    public class AnswerEntity
+    public partial class AnswerEntity
     {
         public Guid Id { get; set; }
 
@@ -14,10 +11,14 @@ namespace StartUpMentor.DAL.Models
         public string UserName { get; set; }
         public DateTime Date { get; set; }
 
+        //FK for User
         public string UserId { get; set; }
-        public Guid QuestionId { get; set; }
-
+        //One to many - One answer can be posted by a single user
         public virtual UserEntity User { get; set; }
+
+        //FK for Question
+        public Guid QuestionId { get; set; }
+        //One Answer is related to one Question
         public virtual QuestionEntity Question { get; set; }
     }
 }

@@ -17,12 +17,9 @@ namespace StartUpMentor.Model
 
         public Guid QuestionId { get; set; }
         public Guid AnswerId { get; set; }
-        public Guid UserId { get; set; }
-        public Guid FieldId { get; set; }
 
         public virtual IQuestion Question { get; set; }
         public virtual IAnswer Answer { get; set; }
-        public virtual IUser User { get; set; }
-        public virtual IField Field { get; set; }
+
     }
 }

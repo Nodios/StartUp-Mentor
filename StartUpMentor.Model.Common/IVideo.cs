@@ -14,14 +14,14 @@ namespace StartUpMentor.Model.Common
         string Path { get; set; }
         DateTime UploadDate { get; set; }
 
+        //FK for Question
         Guid QuestionId { get; set; }
-        Guid AnswerId { get; set; }
-        Guid UserId { get; set; }
-        Guid FieldId { get; set; }
-
+        //One Video is related to one Question
         IQuestion Question { get; set; }
+
+        //FK for Answer
+        Guid AnswerId { get; set; }
+        //One Video is related to one Question
         IAnswer Answer { get; set; }
-        IUser User { get; set; }
-        IField Field { get; set; }
     }
 }
