@@ -13,7 +13,7 @@ namespace StartUpMentor.Model
         public string Name { get; set; }
 
         //Field can have many users - must define UserField table
-        public virtual ICollection<IUser> Users { get; set; }
+        public virtual ICollection<IApplicationUser> Users { get; set; }
         //Field can contain many questions
         public virtual ICollection<IQuestion> Questions { get; set; }
     }

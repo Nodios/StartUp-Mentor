@@ -18,6 +18,6 @@ namespace StartUpMentor.Model.Common
         string UserId { get; set; }
 
         //One to one
-        IUser User { get; set; }
+        IApplicationUser User { get; set; }
     }
 }

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace StartUpMentor.DAL.Mapping
 {
-    public class UserMap : EntityTypeConfiguration<UserEntity>
+    public class UserMap : EntityTypeConfiguration<ApplicationUser>
     {
         public UserMap()
         {

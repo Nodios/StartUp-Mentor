@@ -6,13 +6,12 @@ using System.Threading.Tasks;
 
 namespace StartUpMentor.Model.Common
 {
-    public interface IUser
+    public interface IApplicationUser
     {
         string Id { get; set; }
         string UserName { get; set; }
         string PasswordHash { get; set; }
         string Email { get; set; }
-
         //One to one relation - User has one Info
         IInfo Info { get; set; }
 

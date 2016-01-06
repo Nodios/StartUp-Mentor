@@ -18,7 +18,7 @@ namespace StartUpMentor.Service
             Repository = repository;
         }
 
-        public async Task<IUser> FindAsync(string username)
+        public async Task<IApplicationUser> FindAsync(string username)
         {
             try
             {
@@ -30,7 +30,7 @@ namespace StartUpMentor.Service
             }
         }
 
-        public async Task<IUser> FindAsync(string username, string password)
+        public async Task<IApplicationUser> FindAsync(string username, string password)
         {
             try
             {
@@ -42,7 +42,7 @@ namespace StartUpMentor.Service
             }
         }
 
-        public async Task<bool> RegisterUser(IUser user, string password)
+        public async Task<bool> RegisterUser(IApplicationUser user, string password)
         {
             try
             {
@@ -54,7 +54,7 @@ namespace StartUpMentor.Service
             }
         }
 
-        public async Task<IUser> UpdateEmailOrUsernameAsync(IUser user, string password)
+        public async Task<IApplicationUser> UpdateEmailOrUsernameAsync(IApplicationUser user, string password)
         {
             try
             {

@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 using StartUpMentor.Model.AutoMapperModelLayerMapping;
+using StartUpMentor.UI.App_Start;
 
 namespace StartUpMentor.UI
 {
@@ -21,6 +22,7 @@ namespace StartUpMentor.UI
             AutoMapper.Mapper.Initialize(c =>
             {
                 c.AddProfile<MappingConfiguration>();
+                c.AddProfile<UIMappingConfiguration>();
             });
         }
     }

@@ -8,6 +8,10 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
+using StartUpMentor.DAL;
+using StartUpMentor.DAL.Models;
+using StartUpMentor.Service.Common;
+using Microsoft.AspNet.Identity.EntityFramework;
 using StartUpMentor.UI.Models;
 
 namespace StartUpMentor.UI.Controllers
@@ -15,17 +19,21 @@ namespace StartUpMentor.UI.Controllers
     [Authorize]
     public class AccountController : Controller
     {
+        protected IUserService Service { get; private set; }
+        private UserManager<StartUpMentor.DAL.Models.ApplicationUser> manager;
+
         private ApplicationSignInManager _signInManager;
+
         private ApplicationUserManager _userManager;
 
         public AccountController()
         {
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
+        public AccountController(IUserService service)
         {
-            UserManager = userManager;
-            SignInManager = signInManager;
+            Service = service;
+            manager = new UserManager<StartUpMentor.DAL.Models.ApplicationUser>(new UserStore<StartUpMentor.DAL.Models.ApplicationUser>(new StartUpMentor.DAL.ApplicationDbContext()));
         }
 
         public ApplicationSignInManager SignInManager
@@ -151,8 +159,9 @@ namespace StartUpMentor.UI.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
-                var result = await UserManager.CreateAsync(user, model.Password);
+                var user = new StartUpMentor.DAL.Models.ApplicationUser() { UserName = model.UserName, Email = model.Email };
+
+                IdentityResult result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
@@ -367,7 +376,7 @@ namespace StartUpMentor.UI.Controllers
                 {
                     return View("ExternalLoginFailure");
                 }
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new StartUpMentor.DAL.Models.ApplicationUser { UserName = model.Email, Email = model.Email };
                 var result = await UserManager.CreateAsync(user);
                 if (result.Succeeded)
                 {

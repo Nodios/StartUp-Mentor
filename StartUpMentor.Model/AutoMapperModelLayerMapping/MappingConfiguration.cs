@@ -29,9 +29,9 @@ namespace StartUpMentor.Model.AutoMapperModelLayerMapping
             Mapper.CreateMap<QuestionEntity, Question>().ReverseMap();
             Mapper.CreateMap<Question, IQuestion>().ReverseMap();
 
-            Mapper.CreateMap<UserEntity, IUser>().ReverseMap();
-            Mapper.CreateMap<UserEntity, User>().ReverseMap();
-            Mapper.CreateMap<User, IUser>().ReverseMap();
+            Mapper.CreateMap<ApplicationUser, IApplicationUser>().ReverseMap();
+            Mapper.CreateMap<ApplicationUser, ApplicationUser>().ReverseMap();
+            Mapper.CreateMap<ApplicationUser, IApplicationUser>().ReverseMap();
 
             Mapper.CreateMap<VideoEntity, IVideo>().ReverseMap();
             Mapper.CreateMap<VideoEntity, Video>().ReverseMap();

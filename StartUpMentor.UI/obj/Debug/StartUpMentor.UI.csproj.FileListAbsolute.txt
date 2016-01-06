@@ -1,4 +1,3 @@
-d:\Users\Dino\documents\visual studio 2013\Projects\StartUpMentor\StartUpMentor.UI\obj\Debug\StartUpMentor.UI.csprojResolveAssemblyReference.cache
 d:\Users\Dino\documents\visual studio 2013\Projects\StartUpMentor\StartUpMentor.UI\bin\StartUpMentor.UI.dll.config
 d:\Users\Dino\documents\visual studio 2013\Projects\StartUpMentor\StartUpMentor.UI\bin\StartUpMentor.UI.dll
 d:\Users\Dino\documents\visual studio 2013\Projects\StartUpMentor\StartUpMentor.UI\bin\StartUpMentor.UI.pdb
@@ -86,5 +85,6 @@ d:\Users\Dino\documents\visual studio 2013\Projects\StartUpMentor\StartUpMentor.
 d:\Users\Dino\documents\visual studio 2013\Projects\StartUpMentor\StartUpMentor.UI\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 d:\Users\Dino\documents\visual studio 2013\Projects\StartUpMentor\StartUpMentor.UI\bin\Ninject.Extensions.Factory.xml
 d:\Users\Dino\documents\visual studio 2013\Projects\StartUpMentor\StartUpMentor.UI\bin\Castle.Core.xml
+d:\Users\Dino\documents\visual studio 2013\Projects\StartUpMentor\StartUpMentor.UI\obj\Debug\StartUpMentor.UI.csprojResolveAssemblyReference.cache
 d:\Users\Dino\documents\visual studio 2013\Projects\StartUpMentor\StartUpMentor.UI\obj\Debug\StartUpMentor.UI.dll
 d:\Users\Dino\documents\visual studio 2013\Projects\StartUpMentor\StartUpMentor.UI\obj\Debug\StartUpMentor.UI.pdb

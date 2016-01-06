@@ -19,6 +19,11 @@ namespace StartUpMentor.Model
         public Guid FieldId { get; set; }
         //One to one - Question can be related to one Field
         public virtual IField Field { get; set; }
+        
+        //FK for User
+        public string UserId { get; set; }
+        //One to one - Question is related to only one User
+        public virtual IApplicationUser User { get; set; }
 
         //One to many - One Question can have many Answers
         public virtual ICollection<IAnswer> Answers { get; set; }

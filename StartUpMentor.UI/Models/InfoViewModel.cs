@@ -1,9 +1,11 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Web;
 
-namespace StartUpMentor.DAL.Models
+namespace StartUpMentor.UI.Models
 {
-    public partial class InfoEntity
+    public class InfoViewModel
     {
         public Guid Id { get; set; }
         public string FirstName { get; set; }
@@ -15,6 +17,6 @@ namespace StartUpMentor.DAL.Models
         public string UserId { get; set; }
 
         //One to one
-        public virtual ApplicationUser User { get; set; }
+        public virtual UserViewModel User { get; set; }
     }
 }

@@ -19,6 +19,6 @@ namespace StartUpMentor.Model
         public string UserId { get; set; }
 
         //One to one
-        public virtual IUser User { get; set; }
+        public virtual IApplicationUser User { get; set; }
     }
 }

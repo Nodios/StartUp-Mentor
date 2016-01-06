@@ -6,6 +6,8 @@ using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Owin;
 using StartUpMentor.UI.Models;
+using StartUpMentor.DAL;
+using StartUpMentor.DAL.Models;
 
 namespace StartUpMentor.UI
 {

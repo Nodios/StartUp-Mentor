@@ -26,7 +26,7 @@ namespace StartUpMentor.Repository
             Bind<IUnitOfWorkFactory>().ToFactory();
 
             //User store and manager
-            Bind<UserManager<UserEntity>>().ToSelf().WithConstructorArgument(typeof(IUserStore<UserEntity>), new UserStore<UserEntity>(new ApplicationDbContext()));
+            Bind<UserManager<ApplicationUser>>().ToSelf().WithConstructorArgument(typeof(IUserStore<ApplicationUser>), new UserStore<ApplicationUser>(new ApplicationDbContext()));
             Bind<StartUpMentor.Repository.UserRepository.IUserManagerFactory>().ToFactory();
 
             //Repository binding
