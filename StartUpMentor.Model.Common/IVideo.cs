@@ -13,6 +13,7 @@ namespace StartUpMentor.Model.Common
         string Length { get; set; }
         string Path { get; set; }
         DateTime UploadDate { get; set; }
+        byte[] VideoFile { get; set; }
 
         //FK for Question
         Guid QuestionId { get; set; }

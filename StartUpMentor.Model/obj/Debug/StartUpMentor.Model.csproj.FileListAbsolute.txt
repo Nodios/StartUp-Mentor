@@ -1,4 +1,3 @@
-d:\Users\Dino\documents\visual studio 2013\Projects\StartUpMentor\StartUpMentor.Model\obj\Debug\StartUpMentor.Model.csprojResolveAssemblyReference.cache
 d:\Users\Dino\documents\visual studio 2013\Projects\StartUpMentor\StartUpMentor.Model\bin\Debug\StartUpMentor.Model.dll.config
 d:\Users\Dino\documents\visual studio 2013\Projects\StartUpMentor\StartUpMentor.Model\bin\Debug\StartUpMentor.Model.dll
 d:\Users\Dino\documents\visual studio 2013\Projects\StartUpMentor\StartUpMentor.Model\bin\Debug\StartUpMentor.Model.pdb
@@ -16,5 +15,8 @@ d:\Users\Dino\documents\visual studio 2013\Projects\StartUpMentor\StartUpMentor.
 d:\Users\Dino\documents\visual studio 2013\Projects\StartUpMentor\StartUpMentor.Model\bin\Debug\EntityFramework.SqlServer.xml
 d:\Users\Dino\documents\visual studio 2013\Projects\StartUpMentor\StartUpMentor.Model\bin\Debug\Microsoft.AspNet.Identity.Core.xml
 d:\Users\Dino\documents\visual studio 2013\Projects\StartUpMentor\StartUpMentor.Model\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
+d:\Users\Dino\documents\visual studio 2013\Projects\StartUpMentor\StartUpMentor.Model\obj\Debug\StartUpMentor.Model.csprojResolveAssemblyReference.cache
 d:\Users\Dino\documents\visual studio 2013\Projects\StartUpMentor\StartUpMentor.Model\obj\Debug\StartUpMentor.Model.dll
 d:\Users\Dino\documents\visual studio 2013\Projects\StartUpMentor\StartUpMentor.Model\obj\Debug\StartUpMentor.Model.pdb
+d:\Users\Dino\documents\visual studio 2013\Projects\StartUpMentor\StartUpMentor.Model\bin\Debug\Ninject.dll
+d:\Users\Dino\documents\visual studio 2013\Projects\StartUpMentor\StartUpMentor.Model\bin\Debug\Ninject.xml

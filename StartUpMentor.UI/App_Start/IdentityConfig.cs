@@ -10,7 +10,11 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
-using StartUpMentor.UI.Models;
+using StartUpMentor.DAL;
+using StartUpMentor.DAL.Models;
+//using StartUpMentor.UI.Models;
+//using ApplicationDbContext = StartUpMentor.DAL.ApplicationDbContext;
+//using ApplicationUser = StartUpMentor.DAL.Models.ApplicationUser;
 
 namespace StartUpMentor.UI
 {
@@ -54,10 +58,10 @@ namespace StartUpMentor.UI
             manager.PasswordValidator = new PasswordValidator
             {
                 RequiredLength = 6,
-                RequireNonLetterOrDigit = true,
-                RequireDigit = true,
-                RequireLowercase = true,
-                RequireUppercase = true,
+                RequireNonLetterOrDigit = false,
+                RequireDigit = false,
+                RequireLowercase = false,
+                RequireUppercase = false,
             };
 
             // Configure user lockout defaults

@@ -14,6 +14,7 @@ namespace StartUpMentor.Model
         public string Length { get; set; }
         public string Path { get; set; }
         public DateTime UploadDate { get; set; }
+        public byte[] VideoFile { get; set; }
 
         public Guid QuestionId { get; set; }
         public Guid AnswerId { get; set; }

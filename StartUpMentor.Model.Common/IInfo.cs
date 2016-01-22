@@ -8,7 +8,7 @@ namespace StartUpMentor.Model.Common
 {
     public interface IInfo
     {
-        Guid Id { get; set; }
+        string Id { get; set; }
         string FirstName { get; set; }
         string LastName { get; set; }
         string Email { get; set; }
@@ -18,6 +18,6 @@ namespace StartUpMentor.Model.Common
         string UserId { get; set; }
 
         //One to one
-        IUser User { get; set; }
+        IApplicationUser User { get; set; }
     }
 }

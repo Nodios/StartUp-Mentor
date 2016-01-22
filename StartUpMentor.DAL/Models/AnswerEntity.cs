@@ -11,10 +11,15 @@ namespace StartUpMentor.DAL.Models
         public string UserName { get; set; }
         public DateTime Date { get; set; }
 
+        //FK for Video
+        public Guid VideoId { get; set; }
+        //One to one - Answer can have only one Video
+        public virtual VideoEntity Video { get; set; }
+
         //FK for User
         public string UserId { get; set; }
         //One to many - One answer can be posted by a single user
-        public virtual UserEntity User { get; set; }
+        public virtual ApplicationUser User { get; set; }
 
         //FK for Question
         public Guid QuestionId { get; set; }

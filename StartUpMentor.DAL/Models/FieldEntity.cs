@@ -9,7 +9,7 @@ namespace StartUpMentor.DAL.Models
         public string Name { get; set; }
 
         //Field can have many users - must define UserField table
-        public virtual ICollection<UserEntity> Users { get; set; }
+        public virtual ICollection<ApplicationUser> Users { get; set; }
         //Field can contain many questions
         public virtual ICollection<QuestionEntity> Questions { get; set; }
     }

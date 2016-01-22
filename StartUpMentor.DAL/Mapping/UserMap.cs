@@ -9,13 +9,13 @@ using System.Threading.Tasks;
 
 namespace StartUpMentor.DAL.Mapping
 {
-    public class UserMap : EntityTypeConfiguration<UserEntity>
+    public class UserMap : EntityTypeConfiguration<ApplicationUser>
     {
         public UserMap()
         {
             HasOptional(u => u.Info).WithRequired(i => i.User);
 
-            //This creates separate table with
+            //This creates separate table with Id of Field and Id of User
             HasMany(t => t.Fields).WithMany(f => f.Users).Map(uf =>
             {
                 uf.MapLeftKey("UserRefId");

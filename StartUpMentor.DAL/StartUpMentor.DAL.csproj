@@ -63,6 +63,7 @@
     <Compile Include="Mapping\InfoMap.cs" />
     <Compile Include="Mapping\QuestionMap.cs" />
     <Compile Include="Mapping\UserMap.cs" />
+    <Compile Include="Mapping\VideoMap.cs" />
     <Compile Include="Models\AnswerEntity.cs" />
     <Compile Include="Models\FieldEntity.cs" />
     <Compile Include="Models\IDataEntity.cs" />

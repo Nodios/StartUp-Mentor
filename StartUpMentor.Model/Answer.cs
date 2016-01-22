@@ -18,7 +18,7 @@ namespace StartUpMentor.Model
         //FK for User
         public string UserId { get; set; }
         //One to many - One answer can be posted by a single user
-        public virtual IUser User { get; set; }
+        public virtual IApplicationUser User { get; set; }
 
         //FK for Question
         public Guid QuestionId { get; set; }

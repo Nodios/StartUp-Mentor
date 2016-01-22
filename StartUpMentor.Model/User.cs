@@ -5,26 +5,13 @@ using System.Text;
 using System.Threading.Tasks;
 using StartUpMentor.Model.Common;
 using Microsoft.AspNet.Identity.EntityFramework;
+using System.Security.Claims;
+using Microsoft.AspNet.Identity;
 
 namespace StartUpMentor.Model
 {
-    public class User : IdentityUser, IUser
+    public class ApplicationUser : IdentityUser, IApplicationUser
     {
-        public override string Id
-        {
-            get
-            {
-                return base.Id;
-            }
-            set
-            {
-                if (String.IsNullOrEmpty(Id))
-                    base.Id = Guid.NewGuid().ToString();
-                else
-                    base.Id = value;
-            }
-        }
-
         //One to one relation - User has one Info
         public virtual IInfo Info { get; set; }
 
@@ -35,5 +22,13 @@ namespace StartUpMentor.Model
         public virtual ICollection<IQuestion> Questions { get; set; }
         //If mentor - User can have many answers
         public virtual ICollection<IAnswer> Answers { get; set; }
+
+        public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
+        {
+            // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
+            var userIdentity = await manager.CreateIdentityAsync(this, DefaultAuthenticationTypes.ApplicationCookie);
+            // Add custom user claims here
+            return userIdentity;
+        }
     }
 }

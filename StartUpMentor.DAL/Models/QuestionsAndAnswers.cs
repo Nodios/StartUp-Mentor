@@ -21,6 +21,6 @@ namespace StartUpMentor.DAL.Models
 
         public string UserName { get; set; }
 
-        public UserEntity User { get; set; }
+        public ApplicationUser User { get; set; }
     }
 }

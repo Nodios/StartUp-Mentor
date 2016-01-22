@@ -26,7 +26,7 @@ namespace StartUpMentor.Repository
         }
 
         #region UserManager
-        public UserManager<UserEntity> CreateUserManager()
+        public UserManager<ApplicationUser> CreateUserManager()
         {
             return UserManagerFactory.CreateUserManager();
         }
@@ -35,17 +35,17 @@ namespace StartUpMentor.Repository
         /// Initialize user manager
         /// </summary>
         /// <returns>new user manager</returns>
-        private UserManager<UserEntity> createUserManager()
+        private UserManager<ApplicationUser> createUserManager()
         {
-            return new UserManager<UserEntity>(new UserStore<UserEntity>(new ApplicationDbContext()));
+            return new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
         }
         #endregion
 
-        public async Task<StartUpMentor.Model.Common.IUser> GetAsync(string username)
+        public async Task<StartUpMentor.Model.Common.IApplicationUser> GetAsync(string username)
         {
             try
             {
-                return AutoMapper.Mapper.Map<Model.Common.IUser>(await Repository.GetAsync<UserEntity>(u => u.UserName.Equals(username)));
+                return AutoMapper.Mapper.Map<Model.Common.IApplicationUser>(await Repository.GetAsync<ApplicationUser>(u => u.UserName.Equals(username)));
             }
             catch (Exception ex)
             {
@@ -53,11 +53,11 @@ namespace StartUpMentor.Repository
             }
         }
 
-        public async Task<IEnumerable<Model.Common.IUser>> GetAsync(System.Linq.Expressions.Expression<Func<Model.Common.IUser, bool>> match)
+        public async Task<IEnumerable<Model.Common.IApplicationUser>> GetAsync(System.Linq.Expressions.Expression<Func<Model.Common.IApplicationUser, bool>> match)
         {
             try
             {
-                return AutoMapper.Mapper.Map<IEnumerable<StartUpMentor.Model.Common.IUser>>(await Repository.GetRangeAsync<UserEntity>());
+                return AutoMapper.Mapper.Map<IEnumerable<StartUpMentor.Model.Common.IApplicationUser>>(await Repository.GetRangeAsync<ApplicationUser>());
             }
             catch (Exception ex)
             {
@@ -65,15 +65,15 @@ namespace StartUpMentor.Repository
             }
         }
 
-        public async Task<Model.Common.IUser> GetAsync(string username, string password)
+        public async Task<Model.Common.IApplicationUser> GetAsync(string username, string password)
         {
             try
             {
-                UserManager<UserEntity> userManager = CreateUserManager();
+                UserManager<ApplicationUser> userManager = CreateUserManager();
 
-                UserEntity user = await userManager.FindAsync(username, password);
+                ApplicationUser user = await userManager.FindAsync(username, password);
 
-                return AutoMapper.Mapper.Map<StartUpMentor.Model.Common.IUser>(user);
+                return AutoMapper.Mapper.Map<StartUpMentor.Model.Common.IApplicationUser>(user);
             }
             catch (Exception ex)
             {
@@ -81,11 +81,11 @@ namespace StartUpMentor.Repository
             }
         }
 
-        public async Task<int> AddUser(Model.Common.IUser user)
+        public async Task<int> AddUser(Model.Common.IApplicationUser user)
         {
             try
             {
-                return await Repository.AddAsync<UserEntity>(AutoMapper.Mapper.Map<UserEntity>(user));
+                return await Repository.AddAsync<ApplicationUser>(AutoMapper.Mapper.Map<ApplicationUser>(user));
             }
             catch (Exception ex)
             {
@@ -93,12 +93,12 @@ namespace StartUpMentor.Repository
             }
         }
 
-        public async Task<bool> RegisterUser(Model.Common.IUser user, string password)
+        public async Task<bool> RegisterUser(Model.Common.IApplicationUser user, string password)
         {
             try
             {
-                UserManager<UserEntity> userManager = this.CreateUserManager();
-                IdentityResult result = await userManager.CreateAsync(AutoMapper.Mapper.Map<UserEntity>(user), password);
+                UserManager<ApplicationUser> userManager = this.CreateUserManager();
+                IdentityResult result = await userManager.CreateAsync(AutoMapper.Mapper.Map<ApplicationUser>(user), password);
 
                 return result.Succeeded;
             }
@@ -108,11 +108,11 @@ namespace StartUpMentor.Repository
             }
         }
 
-        public async Task<int> UpdateAsync(Model.Common.IUser user)
+        public async Task<int> UpdateAsync(Model.Common.IApplicationUser user)
         {
             try
             {
-                return await Repository.UpdateAsync<UserEntity>(AutoMapper.Mapper.Map<UserEntity>(user));
+                return await Repository.UpdateAsync<ApplicationUser>(AutoMapper.Mapper.Map<ApplicationUser>(user));
             }
             catch (Exception ex)
             {
@@ -120,26 +120,26 @@ namespace StartUpMentor.Repository
             }
         }
 
-        public async Task<Model.Common.IUser> UpdateUserAsync(Model.Common.IUser user, string password)
+        public async Task<Model.Common.IApplicationUser> UpdateUserAsync(Model.Common.IApplicationUser user, string password)
         {
             try
             {
                 IUnitOfWork uow = Repository.CreateUnitOfWork();
                 bool passwordValid = false;
-                Task<UserEntity> result = null;
+                Task<ApplicationUser> result = null;
 
-                UserManager<UserEntity> UserManager = CreateUserManager();
+                UserManager<ApplicationUser> UserManager = CreateUserManager();
 
-                UserEntity userToCheck = await UserManager.FindByIdAsync(user.Id);
+                ApplicationUser userToCheck = await UserManager.FindByIdAsync(user.Id);
                 passwordValid = await UserManager.CheckPasswordAsync(userToCheck, password);
 
                 if (passwordValid)
-                    result = uow.UpdateWithAddAsync<UserEntity>(AutoMapper.Mapper.Map<UserEntity>(user));
+                    result = uow.UpdateWithAddAsync<ApplicationUser>(AutoMapper.Mapper.Map<ApplicationUser>(user));
                 else
                     throw new Exception("Invalid password");
 
                 await uow.CommitAsync();
-                return await Task.FromResult(AutoMapper.Mapper.Map<StartUpMentor.Model.Common.IUser>(result.Result) as StartUpMentor.Model.Common.IUser);
+                return await Task.FromResult(AutoMapper.Mapper.Map<StartUpMentor.Model.Common.IApplicationUser>(result.Result) as StartUpMentor.Model.Common.IApplicationUser);
             }
             catch (Exception ex)
             {
@@ -147,26 +147,26 @@ namespace StartUpMentor.Repository
             }
         }
 
-        public async Task<Model.Common.IUser> UpdateUserEmailOrUsernameAsync(Model.Common.IUser user, string password)
+        public async Task<Model.Common.IApplicationUser> UpdateUserEmailOrUsernameAsync(Model.Common.IApplicationUser user, string password)
         {
             try
             {
                 IUnitOfWork uow = Repository.CreateUnitOfWork();
                 bool passwordValid = false;
-                Task<UserEntity> result = null;
+                Task<ApplicationUser> result = null;
 
-                UserManager<UserEntity> UserManager = CreateUserManager();
+                UserManager<ApplicationUser> UserManager = CreateUserManager();
 
-                UserEntity userToCheck = await UserManager.FindByIdAsync(user.Id);
+                ApplicationUser userToCheck = await UserManager.FindByIdAsync(user.Id);
                 passwordValid = await UserManager.CheckPasswordAsync(userToCheck, password);
 
                 if (passwordValid)
-                    result = uow.UpdateWithAddAsync<UserEntity>(AutoMapper.Mapper.Map<UserEntity>(user), u => u.Email, u => u.UserName);
+                    result = uow.UpdateWithAddAsync<ApplicationUser>(AutoMapper.Mapper.Map<ApplicationUser>(user), u => u.Email, u => u.UserName);
                 else
                     throw new Exception("Invalid password");
 
                 await uow.CommitAsync();
-                return await Task.FromResult(AutoMapper.Mapper.Map<StartUpMentor.Model.Common.IUser>(result.Result) as StartUpMentor.Model.Common.IUser);
+                return await Task.FromResult(AutoMapper.Mapper.Map<StartUpMentor.Model.Common.IApplicationUser>(result.Result) as StartUpMentor.Model.Common.IApplicationUser);
             }
             catch (Exception ex)
             {
@@ -178,7 +178,7 @@ namespace StartUpMentor.Repository
         {
             try
             {
-                UserManager<UserEntity> UserManager = CreateUserManager();
+                UserManager<ApplicationUser> UserManager = CreateUserManager();
                 IdentityResult result = await UserManager.ChangePasswordAsync(userId, oldPassword, newPassword);
 
                 return result.Succeeded;
@@ -189,11 +189,11 @@ namespace StartUpMentor.Repository
             }
         }
 
-        public async Task<int> DeleteAsync(Model.Common.IUser user)
+        public async Task<int> DeleteAsync(Model.Common.IApplicationUser user)
         {
             try
             {
-                return await Repository.DeleteAsync<UserEntity>(AutoMapper.Mapper.Map<UserEntity>(user));
+                return await Repository.DeleteAsync<ApplicationUser>(AutoMapper.Mapper.Map<ApplicationUser>(user));
             }
             catch (Exception ex)
             {
@@ -205,7 +205,7 @@ namespace StartUpMentor.Repository
         {
             try
             {
-                return await this.DeleteAsync(AutoMapper.Mapper.Map<StartUpMentor.Model.Common.IUser>(await Repository.GetAsync<UserEntity>(id)));
+                return await this.DeleteAsync(AutoMapper.Mapper.Map<StartUpMentor.Model.Common.IApplicationUser>(await Repository.GetAsync<ApplicationUser>(id)));
             }
             catch (Exception ex)
             {
@@ -215,7 +215,7 @@ namespace StartUpMentor.Repository
 
         public interface IUserManagerFactory
         {
-            UserManager<UserEntity> CreateUserManager();
+            UserManager<ApplicationUser> CreateUserManager();
         }
     }
 }

@@ -13,7 +13,7 @@ using StartUpMentor.DAL.Mapping;
 
 namespace StartUpMentor.DAL
 {
-    public class ApplicationDbContext : IdentityDbContext<UserEntity>, IApplicationDbContext
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>, IApplicationDbContext
     {
         #region Constructors
         public ApplicationDbContext()
@@ -29,6 +29,11 @@ namespace StartUpMentor.DAL
             Database.SetInitializer(new StartUpMentorInitializer());
         }
         #endregion
+
+        public static ApplicationDbContext Create()
+        {
+            return new ApplicationDbContext();
+        }
 
 
         public DbSet<AnswerEntity> Answers { get; set; }

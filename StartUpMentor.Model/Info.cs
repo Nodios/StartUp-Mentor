@@ -9,7 +9,7 @@ namespace StartUpMentor.Model
 {
     public class Info : IInfo
     {
-        public Guid Id { get; set; }
+        public string Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }
@@ -19,6 +19,6 @@ namespace StartUpMentor.Model
         public string UserId { get; set; }
 
         //One to one
-        public virtual IUser User { get; set; }
+        public virtual IApplicationUser User { get; set; }
     }
 }
