@@ -69,7 +69,6 @@
     <Compile Include="Models\IDataEntity.cs" />
     <Compile Include="Models\InfoEntity.cs" />
     <Compile Include="Models\QuestionEntity.cs" />
-    <Compile Include="Models\QuestionsAndAnswers.cs" />
     <Compile Include="Models\UserEntity.cs" />
     <Compile Include="Models\VideoEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

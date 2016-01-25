@@ -24,7 +24,7 @@ namespace StartUpMentor.Service
             return await Repository.GetAsync(id);
         }
 
-        public async Task<IEnumerable<IField>> GetRangeAsync(GenericFilter filter)
+        public async Task<IEnumerable<IField>> GetRangeAsync(GenericFilter filter = null)
         {
             return await Repository.GetRangeAsync(filter);
         }

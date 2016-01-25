@@ -15,6 +15,7 @@ namespace StartUpMentor.Service
             Bind<IFieldService>().To<FieldService>();
             Bind<IQuestionService>().To<QuestionService>();
             Bind<IUserService>().To<UserService>();
+            Bind<IVideoService>().To<VideoService>();
         }
     }
 }

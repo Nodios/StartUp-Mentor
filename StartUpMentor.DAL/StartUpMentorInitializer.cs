@@ -55,40 +55,46 @@ namespace StartUpMentor.DAL
             context.Fields.Add(new FieldEntity() 
             {
                 Name = "IT",
-                //Questions = new List<QuestionEntity>()
-                //{
-                //    new QuestionEntity()
-                //    {
-                //        Title = "How to C#?",
-                //        QuestionText = "How to create this project?",
-                //        Date = DateTime.Parse("2015/12/20"),
-                //        UserName = "Dino",
-                //        User = user
-                //    },
-                //    new QuestionEntity()
-                //    {
-                //        Title = "How to Java?",
-                //        QuestionText = "How to create this project in Java?",
-                //        Date = DateTime.Parse("2015/12/20"),
-                //        UserName = "Luka",
-                //        User = user
-                //    }                    
-                //}
+                Questions = new List<QuestionEntity>()
+                {
+                    new QuestionEntity()
+                    {
+                        Title = "How to C#?",
+                        QuestionText = "How to create this project?",
+                        Date = DateTime.Parse("2015/12/20"),
+                        UserName = "Dino",
+                        Answers = new List<AnswerEntity>()
+                        {
+                            new AnswerEntity()
+                            {
+                                AnswerText = "Ovo je testni odgovor",
+                                UserName = "Ivan",
+                                Date = DateTime.Parse("2016/01/23")
+                            }
+                        }
+                    },
+                    new QuestionEntity()
+                    {
+                        Title = "How to Java?",
+                        QuestionText = "How to create this project in Java?",
+                        Date = DateTime.Parse("2015/12/20"),
+                        UserName = "Luka"
+                    }                    
+                }
             });
             context.Fields.Add(new FieldEntity()
             {
                 Name="Economy",
-                //Questions = new List<QuestionEntity>()
-                //{
-                //    new QuestionEntity()
-                //    {
-                //        Title = "How to plan?",
-                //        QuestionText = "I have no idea?",
-                //        Date = DateTime.Parse("2015/12/20"),
-                //        UserName = "Ivan",
-                //        User = user
-                //    }
-                //}
+                Questions = new List<QuestionEntity>()
+                {
+                    new QuestionEntity()
+                    {
+                        Title = "How to plan?",
+                        QuestionText = "I have no idea?",
+                        Date = DateTime.Parse("2015/12/20"),
+                        UserName = "Ivan"
+                    }
+                }
             });
 
             context.SaveChanges();

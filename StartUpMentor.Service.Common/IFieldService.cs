@@ -11,7 +11,7 @@ namespace StartUpMentor.Service.Common
     public interface IFieldService
     {
         Task<IField> GetAsync(Guid id);
-        Task<IEnumerable<IField>> GetRangeAsync(GenericFilter filter);
+        Task<IEnumerable<IField>> GetRangeAsync(GenericFilter filter = null);
         Task<int> AddAsnyc(IField field);
         Task<int> UpdateAsync(IField field);
         Task<int> DeleteAsync(Guid id);

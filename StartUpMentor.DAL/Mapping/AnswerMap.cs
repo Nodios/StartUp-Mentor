@@ -20,7 +20,7 @@ namespace StartUpMentor.DAL.Mapping
             Property(t => t.AnswerText).IsRequired();
             Property(t => t.Date).HasColumnType("datetime2");
 
-            HasRequired(c => c.User).WithMany(u => u.Answers).HasForeignKey(c => c.UserId).WillCascadeOnDelete(false);
+            //HasRequired(c => c.User).WithMany(u => u.Answers).HasForeignKey(c => c.UserId).WillCascadeOnDelete(false);
             HasRequired(c => c.Question).WithMany(q => q.Answers).HasForeignKey(c => c.QuestionId);
             HasOptional(c => c.Video).WithRequired(v => v.Answer);
         }

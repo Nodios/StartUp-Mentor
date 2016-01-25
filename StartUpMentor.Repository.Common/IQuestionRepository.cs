@@ -23,7 +23,6 @@ namespace StartUpMentor.Repository.Common
         /// <param name="filter"></param>
         /// <returns></returns>
         Task<IEnumerable<IQuestion>> GetRangeAsync(Guid fieldId, GenericFilter filter);
-
         Task<int> AddAsync(IQuestion question);
         Task<int> UpdateAsync(IQuestion question);
         Task<int> DeleteAsync(IQuestion question);

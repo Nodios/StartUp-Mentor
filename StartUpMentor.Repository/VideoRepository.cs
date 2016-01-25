@@ -19,9 +19,6 @@ namespace StartUpMentor.Repository
         {
             Repository = repository;
         }
-
-
-
         /// <summary>
         /// Gets the asynchronous.
         /// </summary>
@@ -41,11 +38,10 @@ namespace StartUpMentor.Repository
         }
 
         /// <summary>
-        /// Uploads the video.
+        /// Adds the asynchronous.
         /// </summary>
         /// <param name="video">The video.</param>
         /// <returns></returns>
-        /// <exception cref="System.NotImplementedException"></exception>
         public async Task<int> AddAsync(IVideo video)
         {
             try

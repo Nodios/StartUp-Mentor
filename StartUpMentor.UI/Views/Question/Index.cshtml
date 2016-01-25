@@ -1,0 +1,66 @@
+﻿@model PagedList.IPagedList<StartUpMentor.Model.Common.IQuestion>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @{
+        if (Model.FirstOrDefault() != null) 
+        { 
+            <h3>Don't be shy to ask more questions!</h3>
+            @Html.ActionLink("Ask new question", "NewQuestion", new { fieldId = Model.FirstOrDefault().FieldId})
+        }
+        else
+        {
+            <h3>Ooops! Looks like there are no questions. Consider asking one!</h3>
+            @Html.ActionLink("Ask your first question", "NewQuestion", new{fieldId = ViewBag.FieldId})
+        }
+}
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Title
+        </th>
+        <th>
+            Text
+        </th>
+        <th>
+            User
+        </th>
+        <th>
+            Date
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.QuestionText)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Date)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Index", "Answer", new { questionId=item.Id }, null) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+@Html.PagedListPager(Model, pageNumber => Url.Action("Index", new { pageNumber }))

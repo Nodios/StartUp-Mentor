@@ -8,6 +8,10 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using PagedList;
+using StartUpMentor.UI.Models;
+using StartUpMentor.Model;
+using System.Net;
+using StartUpMentor.Model.Common;
 
 namespace StartUpMentor.UI.Controllers
 {
@@ -27,12 +31,6 @@ namespace StartUpMentor.UI.Controllers
             return View(fields);
         }
 
-        // GET: Field/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
         // GET: Field/Create
         public ActionResult Create()
         {
@@ -41,62 +39,67 @@ namespace StartUpMentor.UI.Controllers
 
         // POST: Field/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public async Task<ActionResult> Create(FieldViewModel fvm)
         {
-            try
+            if (ModelState.IsValid)
             {
-                // TODO: Add insert logic here
+                await Service.AddAsnyc(AutoMapper.Mapper.Map<Field>(fvm));
 
                 return RedirectToAction("Index");
             }
-            catch
-            {
-                return View();
-            }
+            return View(fvm);
         }
 
         // GET: Field/Edit/5
-        public ActionResult Edit(int id)
+        public async Task<ActionResult> Edit(Guid id)
         {
-            return View();
+            if (id == null) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+
+            IField field = await Service.GetAsync(id);
+            if (field == null)
+                return HttpNotFound();
+
+            return View(field);
         }
 
         // POST: Field/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Edit(FieldViewModel fvm)
         {
             try
             {
-                // TODO: Add update logic here
+                if (ModelState.IsValid)
+                {
+                    await Service.UpdateAsync(AutoMapper.Mapper.Map<Field>(fvm));
+                    return RedirectToAction("Index");
+                }
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
                 return View();
+            }
+            catch(Exception ex)
+            {
+                throw ex;
             }
         }
 
-        // GET: Field/Delete/5
-        public ActionResult Delete(int id)
+        public async Task<ActionResult> Delete(Guid id)
         {
-            return View();
+            var fieldToDelete = await Service.GetAsync(id);
+            if (fieldToDelete == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(fieldToDelete);
         }
 
-        // POST: Field/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> DeleteField(Guid id)
         {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            await Service.DeleteAsync(id);
+            return RedirectToAction("Index");
         }
     }
 }

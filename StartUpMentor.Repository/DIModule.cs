@@ -36,7 +36,6 @@ namespace StartUpMentor.Repository
             Bind<IQuestionRepository>().To<QuestionRepository>();
             Bind<IVideoRepository>().To<VideoRepository>();
             Bind<IUserRepository>().To<UserRepository>();
-            Bind<IVideoRepository>().To<VideoRepository>();
         }
     }
 }

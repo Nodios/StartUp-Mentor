@@ -33,7 +33,7 @@ namespace StartUpMentor.Repository
             }
         }
 
-        public async Task<IEnumerable<IField>> GetRangeAsync(GenericFilter filter)
+        public async Task<IEnumerable<IField>> GetRangeAsync(GenericFilter filter = null)
         {
             try
             {

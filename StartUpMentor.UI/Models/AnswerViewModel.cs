@@ -13,6 +13,11 @@ namespace StartUpMentor.UI.Models
         public string UserName { get; set; }
         public DateTime Date { get; set; }
 
+        //FK for Video
+        public Guid VideoId { get; set; }
+        //One to one - Answer can have only one Video
+        public virtual VideoViewModel Video { get; set; }
+
         //FK for User
         public string UserId { get; set; }
         //One to many - One answer can be posted by a single user
