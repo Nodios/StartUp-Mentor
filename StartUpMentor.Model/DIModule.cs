@@ -20,7 +20,6 @@ namespace StartUpMentor.Model
             Bind<IField>().To<Field>();
             Bind<IInfo>().To<Info>();
             Bind<IQuestion>().To<Question>();
-            Bind<IVideo>().To<Video>();
 
             //Za roles
             Bind<IRoleStore<IdentityRole, string>>().To<RoleStore<IdentityRole>>();

@@ -63,14 +63,12 @@
     <Compile Include="Mapping\InfoMap.cs" />
     <Compile Include="Mapping\QuestionMap.cs" />
     <Compile Include="Mapping\UserMap.cs" />
-    <Compile Include="Mapping\VideoMap.cs" />
     <Compile Include="Models\AnswerEntity.cs" />
     <Compile Include="Models\FieldEntity.cs" />
     <Compile Include="Models\IDataEntity.cs" />
     <Compile Include="Models\InfoEntity.cs" />
     <Compile Include="Models\QuestionEntity.cs" />
     <Compile Include="Models\UserEntity.cs" />
-    <Compile Include="Models\VideoEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StartUpMentorInitializer.cs" />
   </ItemGroup>

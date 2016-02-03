@@ -11,6 +11,7 @@ namespace StartUpMentor.Model.Common
         Guid Id { get; set; }
         string Title { get; set; }
         string QuestionText { get; set; }
+        string VideoPath { get; set; }
         string UserName { get; set; }
         DateTime Date { get; set; }
 

@@ -12,8 +12,11 @@ namespace StartUpMentor.Model
         public Guid Id { get; set; }
 
         public string AnswerText { get; set; }
+        public string VideoPath { get; set; }
+        //User that answered question
         public string UserName { get; set; }
         public DateTime Date { get; set; }
+        public DateTime DateLastEdited { get; set; }
 
         //FK for User
         public string UserId { get; set; }

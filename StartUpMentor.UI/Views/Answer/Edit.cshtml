@@ -1,4 +1,4 @@
-﻿@model StartUpMentor.Model.Common.IQuestion
+﻿@model StartUpMentor.Model.Common.IAnswer
 
 @{
     ViewBag.Title = "Edit";
@@ -12,24 +12,16 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>Question</h4>
+        <h4>Answer</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.Id)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.AnswerText, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.QuestionText, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.QuestionText, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.QuestionText, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.AnswerText, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.AnswerText, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -42,7 +34,7 @@
         </div>
 
         @*Ovo mora biti ovdje inace ne prodje update, dodje do konflikta*@
-        @Html.HiddenFor(model => model.FieldId)
+        @Html.HiddenFor(model => model.QuestionId)
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">

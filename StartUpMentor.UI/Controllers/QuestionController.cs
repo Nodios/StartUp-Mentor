@@ -11,6 +11,10 @@ using StartUpMentor.Model.Common;
 using StartUpMentor.UI.Models;
 using StartUpMentor.Model;
 using System.IO;
+using System.Configuration;
+using StartUpMentor.UI.Models.Question;
+using PagedList;
+using System.Web.UI;
 
 namespace StartUpMentor.UI.Controllers
 {
@@ -29,9 +33,12 @@ namespace StartUpMentor.UI.Controllers
         {
             try
             {
-                ViewBag.FieldId = fieldId;
+                //ViewBag.FieldId = fieldId;
+                QuestionIndexViewModel qivm = new QuestionIndexViewModel();
+                qivm.FieldId = fieldId;
                 var questionsFromField = await Service.GetRangeAsync(fieldId, new GenericFilter(searchString, pageNumber, pageSize));
-                return View(questionsFromField);
+                qivm.QuestionList = questionsFromField.ToPagedList(pageNumber, pageSize);
+                return View(qivm);
             }
             catch (Exception ex)
             {
@@ -58,25 +65,92 @@ namespace StartUpMentor.UI.Controllers
             }
         }
 
-        public ActionResult NewQuestion()
+        public ActionResult NewQuestion(Guid fieldId)
         {
-            return View();
+            QuestionAddViewModel qavm = new QuestionAddViewModel();
+            qavm.FieldId = fieldId;
+
+            return View(qavm);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> NewQuestion(QuestionViewModel qvm, Guid fieldId)
+        public async Task<ActionResult> NewQuestion(Guid fieldId, QuestionViewModel qvm, HttpPostedFileBase file)
         {
-            if (ModelState.IsValid)
-            {
-                qvm.Date = DateTime.Now;
-                qvm.FieldId = fieldId;
-                //OVDJE TREBA BITI VIDEO UPLOAD
-                await Service.AddAsync(AutoMapper.Mapper.Map<Question>(qvm));
 
-                return RedirectToAction("Index", new { fieldId = qvm.FieldId});
+            try
+            {
+                #region TO-DO Video upload
+                //Verify that user selected a file
+                if (ModelState.IsValid)
+                {
+                    if (file != null && file.ContentLength > 0)
+                    {
+                        string[] validFileTypes = { "avi", "mpeg", "mp4","MP4" };
+                        var fileName = Guid.NewGuid() + Path.GetFileName(file.FileName);
+                        var contentLenght = file.ContentLength;
+                        var contentType = file.ContentType;
+                        bool isValidFile = false;
+                        var filePath = Path.Combine(Server.MapPath("~/Uploads/Questions"), fileName);
+                        string ext = Path.GetExtension(filePath);
+
+                        for(int i = 0; i<validFileTypes.Length; i++)
+                        {
+                            if(ext == "." + validFileTypes[i])
+                            {
+                                isValidFile = true;
+                                break;
+                            }
+                        }
+
+                        //var filePath = Path.Combine(Server.MapPath("~/App_Data/Uploads"), fileName);
+
+                        if (!isValidFile)
+                        {
+                            //return Content("<script language='javascript' type='text/javascript'>alert('Error, wrong file type');</script>");
+                            ViewBag.ErrorType = "Not video file. Please upload video files only";
+                            return RedirectToAction("NewQuestion", new { fieldId = fieldId });
+                        }
+                        else
+                        {
+                            file.SaveAs(filePath);
+
+                            qvm.Date = DateTime.Now;
+                            qvm.FieldId = fieldId;
+                            //Save video path to database
+                            qvm.VideoPath = filePath;
+                            await Service.AddAsync(AutoMapper.Mapper.Map<Question>(qvm));
+
+                            return RedirectToAction("Index", new { fieldId = qvm.FieldId });
+                        }
+
+                        //qvm.Date = DateTime.Now;
+                        //qvm.FieldId = fieldId;
+                        ////Save video path to database
+                        //qvm.VideoPath = filePath;
+                        //await Service.AddAsync(AutoMapper.Mapper.Map<Question>(qvm));
+
+                        //return RedirectToAction("Index", new { fieldId = qvm.FieldId });
+                    }
+                }
+                #endregion
+
+                //if (ModelState.IsValid)
+                //{
+                //    qvm.Date = DateTime.Now;
+                //    qvm.FieldId = fieldId;
+                //    //OVDJE TREBA BITI VIDEO UPLOAD
+                //    await Service.AddAsync(AutoMapper.Mapper.Map<Question>(qvm));
+
+                //    return RedirectToAction("Index", new { fieldId = qvm.FieldId });
+                //}
+
+                return View(qvm);
             }
-            return View(qvm);
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public async Task<ActionResult> Edit(Guid id)
@@ -84,6 +158,7 @@ namespace StartUpMentor.UI.Controllers
             if (id == null) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 
             IQuestion question = await Service.GetAsync(id);
+
             if (question == null)
                 return HttpNotFound();
 

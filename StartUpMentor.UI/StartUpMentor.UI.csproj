@@ -20,6 +20,7 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -206,13 +207,16 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Controllers\FieldController.cs" />
     <Compile Include="Models\AnswerViewModel.cs" />
+    <Compile Include="Models\Answer\AnswerAddViewModel.cs" />
+    <Compile Include="Models\Answer\AnswerIndexViewModel.cs" />
     <Compile Include="Models\FieldViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\InfoViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\QuestionViewModel.cs" />
+    <Compile Include="Models\Question\QuestionAddViewModel.cs" />
+    <Compile Include="Models\Question\QuestionIndexViewModel.cs" />
     <Compile Include="Models\UserViewModel.cs" />
-    <Compile Include="Models\VideoViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -227,6 +231,7 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\fileExtensionValidation.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -288,9 +293,12 @@
     <Content Include="Views\Question\Edit.cshtml" />
     <Content Include="Views\Answer\Index.cshtml" />
     <Content Include="Views\Answer\NewAnswer.cshtml" />
+    <Content Include="Views\Answer\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Uploads\Answers\" />
+    <Folder Include="Uploads\Questions\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

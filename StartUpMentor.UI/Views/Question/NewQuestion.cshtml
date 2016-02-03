@@ -1,4 +1,5 @@
-﻿@model StartUpMentor.Model.Common.IQuestion
+﻿@*@model StartUpMentor.Model.Common.IQuestion*@
+@model StartUpMentor.UI.Models.Question.QuestionAddViewModel
 
 @{
     ViewBag.Title = "NewQuestion";
@@ -7,7 +8,7 @@
 <h2>NewQuestion</h2>
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm("NewQuestion", "Question", new { fieldId = Model.FieldId}, FormMethod.Post, new { enctype="multipart/form-data"}))
 {
     @Html.AntiForgeryToken()
     
@@ -16,32 +17,43 @@
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
-            @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.QVM.Title, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.QVM.Title, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.QVM.Title, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.QuestionText, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.QVM.QuestionText, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.QuestionText, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.QuestionText, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.QVM.QuestionText, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.QVM.QuestionText, "", new { @class = "text-danger" })
             </div>
+        </div>
+        @if(ViewBag.ErrorType != null)
+        {
+            <script>
+                $(document).ready(function () {
+                    alert('@ViewBag.ErrorType');
+                });
+            </script>
+        }
+        <div class="form-group">
+            <input type="file" name="file" id="questionFile" onchange="return ValidateFile()" />
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.UserName, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.QVM.UserName, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.QVM.UserName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.QVM.UserName, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Create" class="btn btn-default"/>
             </div>
         </div>
     </div>
@@ -53,4 +65,27 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+
+    <script type="text/javascript">
+        var validFileTypes = ["avi", "mpeg", "mp4", "MP4"];
+        function ValidateFile() {
+            var file = document.getElementById("questionFile");
+            var path = file.value;
+            var ext = path.substring(path.lastIndexOf(".") + 1, path.length).toLowerCase();
+            var isValidFile = false;
+
+            for (var i = 0; i < validFileTypes.length; i++) {
+                if (ext == validFileTypes[i]) {
+                    isValidFile = true;
+                    break;
+                }
+            }
+            if (!isValidFile) {
+                window.alert("Not a video!");
+                //Clear input file field
+                document.getElementById("questionFile").value = '';
+            }
+            return isValidFile;
+        }
+    </script>
 }

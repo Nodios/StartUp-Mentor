@@ -40,7 +40,7 @@ namespace StartUpMentor.DAL
         public DbSet<FieldEntity> Fields { get; set; }
         public DbSet<InfoEntity> Info { get; set; }
         public DbSet<QuestionEntity> Questions { get; set; }
-        public DbSet<VideoEntity> Videos { get; set; }
+
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

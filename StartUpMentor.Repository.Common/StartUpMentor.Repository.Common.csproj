@@ -51,7 +51,6 @@
     <Compile Include="IInfoRepository.cs" />
     <Compile Include="IQuestionRepository.cs" />
     <Compile Include="IUserRepository.cs" />
-    <Compile Include="IVideoRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

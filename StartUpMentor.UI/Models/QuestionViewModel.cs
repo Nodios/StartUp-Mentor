@@ -9,8 +9,10 @@ namespace StartUpMentor.UI.Models
     public class QuestionViewModel
     {
         public Guid Id { get; set; }
+
         public string Title { get; set; }
         public string QuestionText { get; set; }
+        public string VideoPath { get; set; }
         public string UserName { get; set; }
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
@@ -20,11 +22,6 @@ namespace StartUpMentor.UI.Models
         public Guid FieldId { get; set; }
         //One to one - Question can be related to one Field
         public virtual FieldViewModel Field { get; set; }
-
-        //FK for Video
-        public Guid VideoId { get; set; }
-        //One to one - question can have only one Video
-        public virtual VideoViewModel Video { get; set; }
 
         //Fk for User
         public string UserId { get; set; }

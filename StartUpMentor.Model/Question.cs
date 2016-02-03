@@ -10,8 +10,11 @@ namespace StartUpMentor.Model
     public class Question : IQuestion
     {
         public Guid Id { get; set; }
+
         public string Title { get; set; }
         public string QuestionText { get; set; }
+        public string VideoPath { get; set; }
+        //User that posted question
         public string UserName { get; set; }
         public DateTime Date { get; set; }
 

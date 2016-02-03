@@ -27,9 +27,6 @@ namespace StartUpMentor.UI.App_Start
 
             Mapper.CreateMap<IApplicationUser, UserViewModel>().ReverseMap();
             Mapper.CreateMap<StartUpMentor.Model.ApplicationUser, UserViewModel>().ReverseMap();
-
-            Mapper.CreateMap<IVideo, VideoViewModel>().ReverseMap();
-            Mapper.CreateMap<Video, VideoViewModel>().ReverseMap();
         }
     }
 }

@@ -8,13 +8,15 @@ namespace StartUpMentor.DAL.Models
         public Guid Id { get; set; }
 
         public string AnswerText { get; set; }
+        public string VideoPath { get; set; }
         public string UserName { get; set; }
         public DateTime Date { get; set; }
+        public DateTime DateLastEdited { get; set; }
 
-        //FK for Video
-        public Guid VideoId { get; set; }
-        //One to one - Answer can have only one Video
-        public virtual VideoEntity Video { get; set; }
+        ////FK for Video
+        //public Guid VideoId { get; set; }
+        ////One to one - Answer can have only one Video
+        //public virtual VideoEntity Video { get; set; }
 
         //FK for User
         public string UserId { get; set; }

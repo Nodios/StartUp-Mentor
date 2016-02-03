@@ -19,6 +19,11 @@ namespace StartUpMentor.Service
             Repository = repository;
         }
 
+        public async Task<IAnswer> GetAsync(Guid id)
+        {
+            return await Repository.GetAsync(id);
+        }
+
         public async Task<IEnumerable<IAnswer>> GetRangeAsync(Guid questionId, GenericFilter filter)
         {
             return await Repository.GetRangeAsync(questionId, filter);

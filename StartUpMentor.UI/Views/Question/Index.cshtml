@@ -1,4 +1,5 @@
-﻿@model PagedList.IPagedList<StartUpMentor.Model.Common.IQuestion>
+﻿@*@model PagedList.IPagedList<StartUpMentor.Model.Common.IQuestion>*@
+@model StartUpMentor.UI.Models.Question.QuestionIndexViewModel
 @using PagedList.Mvc;
 <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
@@ -10,15 +11,15 @@
 
 <p>
     @{
-        if (Model.FirstOrDefault() != null) 
+        if (Model.QuestionList.FirstOrDefault() != null) 
         { 
             <h3>Don't be shy to ask more questions!</h3>
-            @Html.ActionLink("Ask new question", "NewQuestion", new { fieldId = Model.FirstOrDefault().FieldId})
+            @Html.ActionLink("Ask new question", "NewQuestion", new { fieldId = Model.FieldId})
         }
         else
         {
-            <h3>Ooops! Looks like there are no questions. Consider asking one!</h3>
-            @Html.ActionLink("Ask your first question", "NewQuestion", new{fieldId = ViewBag.FieldId})
+            <h3>Looks like there are no questions. Consider asking one!</h3>
+            @Html.ActionLink("Ask your first question", "NewQuestion", new{fieldId = Model.FieldId})
         }
 }
 </p>
@@ -39,7 +40,7 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
+@foreach (var item in Model.QuestionList) {
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.Title)
@@ -62,5 +63,5 @@
 }
 
 </table>
-Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
-@Html.PagedListPager(Model, pageNumber => Url.Action("Index", new { pageNumber }))
+Page @(Model.QuestionList.PageCount < Model.QuestionList.PageNumber ? 0 : Model.QuestionList.PageNumber) of @Model.QuestionList.PageCount
+@Html.PagedListPager(Model.QuestionList, pageNumber => Url.Action("Index", new { pageNumber }))

@@ -15,7 +15,6 @@ namespace StartUpMentor.DAL
         DbSet<FieldEntity> Fields { get; set; }
         DbSet<InfoEntity> Info { get; set; }
         DbSet<QuestionEntity> Questions { get; set; }
-        DbSet<VideoEntity> Videos { get; set; }
 
         DbSet<TEntity> Set<TEntity>() where TEntity : class;
         DbEntityEntry<TEntity> Entry<TEntity>(TEntity entity) where TEntity : class;

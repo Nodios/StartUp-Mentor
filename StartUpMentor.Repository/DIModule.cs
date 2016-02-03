@@ -34,7 +34,6 @@ namespace StartUpMentor.Repository
             Bind<IFieldRepository>().To<FieldRepository>();
             Bind<IInfoRepository>().To<InfoRepository>();
             Bind<IQuestionRepository>().To<QuestionRepository>();
-            Bind<IVideoRepository>().To<VideoRepository>();
             Bind<IUserRepository>().To<UserRepository>();
         }
     }
