@@ -198,10 +198,7 @@
     <Compile Include="Controllers\AnswerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-<<<<<<< HEAD
     <Compile Include="Controllers\QuestionController.cs" />
-=======
->>>>>>> c2ed2912f8c20e58d04b3078661002db0eb318f4
     <Compile Include="Controllers\RoleController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
@@ -210,25 +207,19 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Controllers\FieldController.cs" />
     <Compile Include="Models\AnswerViewModel.cs" />
-<<<<<<< HEAD
     <Compile Include="Models\Answer\AnswerAddViewModel.cs" />
     <Compile Include="Models\Answer\AnswerIndexViewModel.cs" />
-=======
->>>>>>> c2ed2912f8c20e58d04b3078661002db0eb318f4
     <Compile Include="Models\FieldViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\InfoViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\QuestionViewModel.cs" />
-<<<<<<< HEAD
     <Compile Include="Models\Question\QuestionAddViewModel.cs" />
     <Compile Include="Models\Question\QuestionIndexViewModel.cs" />
     <Compile Include="Models\UserViewModel.cs" />
     <Compile Include="Models\User\UserFieldData.cs" />
-=======
     <Compile Include="Models\UserViewModel.cs" />
     <Compile Include="Models\VideoViewModel.cs" />
->>>>>>> c2ed2912f8c20e58d04b3078661002db0eb318f4
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Uploads\VideoStreaming.ashx.cs">
@@ -297,7 +288,6 @@
     <Content Include="Views\Field\Index.cshtml" />
     <Content Include="Views\Role\Index.cshtml" />
     <Content Include="Views\Role\Create.cshtml" />
-<<<<<<< HEAD
     <Content Include="Views\User\Register.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\Question\Index.cshtml" />
@@ -316,12 +306,10 @@
     <Folder Include="App_Data\" />
     <Folder Include="Uploads\Answers\" />
     <Folder Include="Uploads\Questions\" />
-=======
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\User\" />
->>>>>>> c2ed2912f8c20e58d04b3078661002db0eb318f4
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
