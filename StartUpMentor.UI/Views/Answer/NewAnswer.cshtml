@@ -8,7 +8,7 @@
 <h2>NewAnswer</h2>
 
 
-@using (Html.BeginForm("NewAnswer", "Answer", new { fieldId = Model.QuestionId }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+@using (Html.BeginForm("NewAnswer", "Answer", new { questionId = Model.QuestionId }, FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
     
@@ -60,7 +60,7 @@
     @Scripts.Render("~/bundles/jqueryval")
 
 <script type="text/javascript">
-        var validFileTypes = ["avi", "mpeg", "mp4", "MP4"];
+        var validFileTypes = ["avi", "mpeg", "mp4", "MP4", "webm"];
         function ValidateFile() {
             var file = document.getElementById("answerFile");
             var path = file.value;

@@ -18,7 +18,7 @@ namespace StartUpMentor.DAL.Mapping
             Property(t => t.Id).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
             Property(t => t.UserName).IsRequired();
             Property(t => t.AnswerText).IsRequired();
-            Property(t => t.VideoPath);
+            Property(t => t.VideoPath).IsRequired();
             Property(t => t.Date).HasColumnType("datetime2");
             Property(t => t.DateLastEdited).HasColumnType("datetime2");
 

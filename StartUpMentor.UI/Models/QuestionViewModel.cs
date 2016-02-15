@@ -10,9 +10,12 @@ namespace StartUpMentor.UI.Models
     {
         public Guid Id { get; set; }
 
+        [Required]
         public string Title { get; set; }
+        [Required]
         public string QuestionText { get; set; }
         public string VideoPath { get; set; }
+        [Required]
         public string UserName { get; set; }
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]

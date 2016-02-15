@@ -61,6 +61,7 @@ namespace StartUpMentor.DAL
                     {
                         Title = "How to C#?",
                         QuestionText = "How to create this project?",
+                        VideoPath = "null",
                         Date = DateTime.Parse("2015/12/20"),
                         UserName = "Dino",
                         Answers = new List<AnswerEntity>()
@@ -69,6 +70,7 @@ namespace StartUpMentor.DAL
                             {
                                 AnswerText = "Ovo je testni odgovor",
                                 UserName = "Ivan",
+                                VideoPath = "null",
                                 Date = DateTime.Parse("2016/01/23")
                             }
                         }
@@ -77,6 +79,7 @@ namespace StartUpMentor.DAL
                     {
                         Title = "How to Java?",
                         QuestionText = "How to create this project in Java?",
+                        VideoPath = "null",
                         Date = DateTime.Parse("2015/12/20"),
                         UserName = "Luka"
                     }                    
@@ -91,6 +94,7 @@ namespace StartUpMentor.DAL
                     {
                         Title = "How to plan?",
                         QuestionText = "I have no idea?",
+                        VideoPath = "null",
                         Date = DateTime.Parse("2015/12/20"),
                         UserName = "Ivan"
                     }

@@ -159,7 +159,7 @@ namespace StartUpMentor.UI.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new StartUpMentor.DAL.Models.ApplicationUser() { UserName = model.Email, Email = model.Email };
+                var user = new StartUpMentor.DAL.Models.ApplicationUser() { UserName = model.UserName, Email = model.Email };
 
                 IdentityResult result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)

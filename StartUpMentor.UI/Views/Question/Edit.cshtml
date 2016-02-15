@@ -34,6 +34,10 @@
         </div>
 
         <div class="form-group">
+            <input type="file" name="file" id="questionFile" onchange="ValidateFile()" />
+        </div>
+
+        <div class="form-group">
             @Html.LabelFor(model => model.UserName, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control" } })
@@ -41,7 +45,7 @@
             </div>
         </div>
 
-        @*Ovo mora biti ovdje inace ne prodje update, dodje do konflikta*@
+        @*This must be here or else conflict occurs*@
         @Html.HiddenFor(model => model.FieldId)
 
         <div class="form-group">
@@ -53,9 +57,32 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to List", "Index", new { fieldId = Model.FieldId },null)
 </div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+
+    <script type="text/javascript">
+        var validFileTypes = ["avi", "mpeg", "mp4", "MP4", "webm"];
+        function ValidateFile() {
+            var file = document.getElementById("questionFile");
+            var path = file.value;
+            var ext = path.substring(path.lastIndexOf(".") + 1, path.length).toLowerCase();
+            var isValidFile = false;
+
+            for (var i = 0; i < validFileTypes.length; i++) {
+                if (ext == validFileTypes[i]) {
+                    isValidFile = true;
+                    break;
+                }
+            }
+            if (!isValidFile) {
+                window.alert("Not a video!");
+                //Clear input file field
+                document.getElementById("questionFile").value = '';
+            }
+            return isValidFile;
+        }
+    </script>
 }

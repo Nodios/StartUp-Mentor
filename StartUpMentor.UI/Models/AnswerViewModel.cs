@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -8,11 +9,16 @@ namespace StartUpMentor.UI.Models
     public class AnswerViewModel
     {
         public Guid Id { get; set; }
-
+        [Required]
         public string AnswerText { get; set; }
         public string VideoPath { get; set; }
+        [Required]
         public string UserName { get; set; }
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime Date { get; set; }
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime DateLastEdited { get; set; }
 
         //FK for User

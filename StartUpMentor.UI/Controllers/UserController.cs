@@ -10,6 +10,7 @@ using System.Web.Mvc;
 using System.Data.Entity;
 using StartUpMentor.DAL.Models;
 using StartUpMentor.UI.Models;
+using StartUpMentor.UI.Models.User;
 
 namespace StartUpMentor.UI.Controllers
 {
@@ -46,6 +47,7 @@ namespace StartUpMentor.UI.Controllers
             ////Get all fields for display in view
             //ViewBag.Field = await FieldService.GetRangeAsync(null);
 
+
             return View();
         }
         [HttpPost]
@@ -57,11 +59,27 @@ namespace StartUpMentor.UI.Controllers
             {
                 user.Info = new InfoViewModel { FirstName = model.FirstName, LastName = model.LastName, Contact = model.Contact, Email = model.Email };
 
-                bool result = await Service.RegisterUser(AutoMapper.Mapper.Map<Model.Common.IApplicationUser>(user), model.Password);
+                bool result = await Service.RegisterUser(AutoMapper.Mapper.Map<Model.ApplicationUser>(user), model.Password);
 
                 return RedirectToAction("Index");
             }
             return View(model);
+        }
+
+        //TODO: ŠTA OVDJE?!
+        private void PopulateUserFieldData(IUser user)
+        {
+            var fields = FieldService.GetRangeAsync(null).Result;
+            var viewModel = new List<UserFieldData>();
+            foreach(var field in fields)
+            {
+                viewModel.Add(new UserFieldData
+                {
+                    FieldId = field.Id,
+                    Name = field.Name
+                    //treba dodati checked
+                });
+            }
         }
     }
 }
