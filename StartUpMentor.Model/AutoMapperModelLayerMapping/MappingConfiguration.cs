@@ -29,9 +29,19 @@ namespace StartUpMentor.Model.AutoMapperModelLayerMapping
             Mapper.CreateMap<QuestionEntity, Question>().ReverseMap();
             Mapper.CreateMap<Question, IQuestion>().ReverseMap();
 
+<<<<<<< HEAD
             Mapper.CreateMap<StartUpMentor.DAL.Models.ApplicationUser, IApplicationUser>().ReverseMap();
             Mapper.CreateMap<StartUpMentor.DAL.Models.ApplicationUser, ApplicationUser>().ReverseMap();
             Mapper.CreateMap<ApplicationUser, IApplicationUser>().ReverseMap();
+=======
+            Mapper.CreateMap<ApplicationUser, IApplicationUser>().ReverseMap();
+            Mapper.CreateMap<ApplicationUser, ApplicationUser>().ReverseMap();
+            Mapper.CreateMap<ApplicationUser, IApplicationUser>().ReverseMap();
+
+            Mapper.CreateMap<VideoEntity, IVideo>().ReverseMap();
+            Mapper.CreateMap<VideoEntity, Video>().ReverseMap();
+            Mapper.CreateMap<Video, IVideo>().ReverseMap();
+>>>>>>> c2ed2912f8c20e58d04b3078661002db0eb318f4
         }
 
         //public override string ProfileName

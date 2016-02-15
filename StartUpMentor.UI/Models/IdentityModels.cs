@@ -8,7 +8,11 @@ using StartUpMentor.DAL.Models;
 
 namespace StartUpMentor.UI.Models
 {
+<<<<<<< HEAD
      //You can add profile data for the user by adding more properties to your ApplicationUser class, please visit http://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
+=======
+    // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit http://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
+>>>>>>> c2ed2912f8c20e58d04b3078661002db0eb318f4
     //public class ApplicationUser : IdentityUser
     //{
     //    public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)

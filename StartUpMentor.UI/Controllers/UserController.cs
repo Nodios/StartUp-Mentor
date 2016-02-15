@@ -10,7 +10,10 @@ using System.Web.Mvc;
 using System.Data.Entity;
 using StartUpMentor.DAL.Models;
 using StartUpMentor.UI.Models;
+<<<<<<< HEAD
 using StartUpMentor.UI.Models.User;
+=======
+>>>>>>> c2ed2912f8c20e58d04b3078661002db0eb318f4
 
 namespace StartUpMentor.UI.Controllers
 {
@@ -42,15 +45,25 @@ namespace StartUpMentor.UI.Controllers
             }
         }
 
+<<<<<<< HEAD
         public ActionResult Register()
         {
             ////Get all fields for display in view
             //ViewBag.Field = await FieldService.GetRangeAsync(null);
 
+=======
+        public async Task<ActionResult> Register()
+        {
+            //Get all fields for display in view
+            ViewBag.Field = await FieldService.GetRangeAsync(null);
+            //Get all roles
+            ViewBag.Roles = await RoleManager.Roles.ToListAsync();
+>>>>>>> c2ed2912f8c20e58d04b3078661002db0eb318f4
 
             return View();
         }
         [HttpPost]
+<<<<<<< HEAD
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model, UserViewModel user)
@@ -79,6 +92,50 @@ namespace StartUpMentor.UI.Controllers
                     Name = field.Name
                     //treba dodati checked
                 });
+=======
+        public async Task<ActionResult> Register(RegisterViewModel model, UserViewModel user, string roleId)
+        {
+            if (ModelState.IsValid)
+            {
+                user.Info = new InfoViewModel { FirstName = model.FirstName, LastName = model.LastName, Contact = model.Contact };
+
+                bool adminResult = await Service.RegisterUser(AutoMapper.Mapper.Map<Model.Common.IApplicationUser>(user), model.Password);
+
+                if (adminResult)
+                {
+                    if (!String.IsNullOrEmpty(roleId))
+                    {
+                        var role = await RoleManager.FindByIdAsync(roleId);
+                        var result = await UserManager.AddToRoleAsync(user.Id, role.Name);
+                        if (!result.Succeeded)
+                        {
+                            ModelState.AddModelError("", result.Errors.First().ToString());
+                            //Get all fields for display in view
+                            ViewBag.Field = await FieldService.GetRangeAsync(null);
+                            //Get all roles
+                            ViewBag.Roles = await RoleManager.Roles.ToListAsync();
+                            return View();
+                        }
+                    }
+                }
+                else
+                {
+                    //Get all fields for display in view
+                    ViewBag.Field = await FieldService.GetRangeAsync(null);
+                    //Get all roles
+                    ViewBag.Roles = await RoleManager.Roles.ToListAsync();
+                    return View();
+                }
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                //Get all fields for display in view
+                ViewBag.Field = await FieldService.GetRangeAsync(null);
+                //Get all roles
+                ViewBag.Roles = await RoleManager.Roles.ToListAsync();
+                return View();
+>>>>>>> c2ed2912f8c20e58d04b3078661002db0eb318f4
             }
         }
     }

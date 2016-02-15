@@ -9,6 +9,12 @@ namespace StartUpMentor.Model.Common
     public interface IApplicationUser
     {
         string Id { get; set; }
+<<<<<<< HEAD
+=======
+        string UserName { get; set; }
+        string PasswordHash { get; set; }
+        string Email { get; set; }
+>>>>>>> c2ed2912f8c20e58d04b3078661002db0eb318f4
         //One to one relation - User has one Info
         IInfo Info { get; set; }
 

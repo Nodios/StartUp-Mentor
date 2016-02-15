@@ -2,7 +2,10 @@
 using StartUpMentor.Model;
 using StartUpMentor.Model.Common;
 using StartUpMentor.UI.Models;
+<<<<<<< HEAD
 using StartUpMentor.UI.Models.Question;
+=======
+>>>>>>> c2ed2912f8c20e58d04b3078661002db0eb318f4
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,6 +28,7 @@ namespace StartUpMentor.UI.App_Start
 
             Mapper.CreateMap<IQuestion, QuestionViewModel>().ReverseMap();
             Mapper.CreateMap<Question, QuestionViewModel>().ReverseMap();
+<<<<<<< HEAD
             Mapper.CreateMap<IQuestion, QuestionAddViewModel>().ReverseMap();
             Mapper.CreateMap<Question, QuestionAddViewModel>().ReverseMap();
             Mapper.CreateMap<IQuestion, QuestionIndexViewModel>().ReverseMap();
@@ -32,6 +36,14 @@ namespace StartUpMentor.UI.App_Start
 
             Mapper.CreateMap<IApplicationUser, UserViewModel>().ReverseMap();
             Mapper.CreateMap<StartUpMentor.Model.ApplicationUser, UserViewModel>().ReverseMap();
+=======
+
+            Mapper.CreateMap<IApplicationUser, UserViewModel>().ReverseMap();
+            Mapper.CreateMap<StartUpMentor.Model.ApplicationUser, UserViewModel>().ReverseMap();
+
+            Mapper.CreateMap<IVideo, VideoViewModel>().ReverseMap();
+            Mapper.CreateMap<Video, VideoViewModel>().ReverseMap();
+>>>>>>> c2ed2912f8c20e58d04b3078661002db0eb318f4
         }
     }
 }
