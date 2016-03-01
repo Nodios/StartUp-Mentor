@@ -210,8 +210,12 @@
     <Compile Include="Models\Question\QuestionAddViewModel.cs" />
     <Compile Include="Models\Question\QuestionIndexViewModel.cs" />
     <Compile Include="Models\UserViewModel.cs" />
+    <Compile Include="Models\User\UserFieldData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="Uploads\VideoStreaming.ashx.cs">
+      <DependentUpon>VideoStreaming.ashx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -224,7 +228,6 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="Scripts\fileExtensionValidation.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -287,8 +290,13 @@
     <Content Include="Views\Answer\Index.cshtml" />
     <Content Include="Views\Answer\NewAnswer.cshtml" />
     <Content Include="Views\Answer\Edit.cshtml" />
+<<<<<<< HEAD
     <Content Include="Views\User\Register.cshtml" />
     <Content Include="Views\User\Login.cshtml" />
+=======
+    <Content Include="Uploads\VideoStreaming.ashx" />
+    <Content Include="Views\Question\Delete.cshtml" />
+>>>>>>> remotes/origin/video
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

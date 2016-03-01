@@ -2,6 +2,14 @@
 using StartUpMentor.Model;
 using StartUpMentor.Model.Common;
 using StartUpMentor.UI.Models;
+<<<<<<< HEAD
+=======
+using StartUpMentor.UI.Models.Question;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+>>>>>>> remotes/origin/video
 
 namespace StartUpMentor.UI.App_Start
 {
@@ -20,6 +28,10 @@ namespace StartUpMentor.UI.App_Start
 
             Mapper.CreateMap<IQuestion, QuestionViewModel>().ReverseMap();
             Mapper.CreateMap<Question, QuestionViewModel>().ReverseMap();
+            Mapper.CreateMap<IQuestion, QuestionAddViewModel>().ReverseMap();
+            Mapper.CreateMap<Question, QuestionAddViewModel>().ReverseMap();
+            Mapper.CreateMap<IQuestion, QuestionIndexViewModel>().ReverseMap();
+            Mapper.CreateMap<Question, QuestionIndexViewModel>().ReverseMap();
 
            // Mapper.CreateMap<IUser, UserViewModel>().ReverseMap();
            // Mapper.CreateMap<StartUpMentor.Model.ApplicationUser, UserViewModel>().ReverseMap();

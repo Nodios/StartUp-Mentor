@@ -9,27 +9,35 @@
 
 <h2>Index</h2>
 
-<video width="100%" controls autoplay>
+<div>
+    @Html.ActionLink("Back to questions", "Index", "Question", new { fieldId = Model.Question.FieldId }, null)
+</div>
+<br />
+
+<video width="100%" controls preload="metadata">
+    <source src="@Url.Content("~/Uploads/Questions/" + System.IO.Path.GetFileName(Model.Question.VideoPath))" type="video/webm" />
     <source src="@Url.Content("~/Uploads/Questions/" + System.IO.Path.GetFileName(Model.Question.VideoPath))" type="video/mp4" />
 </video>
+
 
 <p>
     @{        
     if (Model.AnswerList.FirstOrDefault() != null) 
-    { 
-        @Html.ActionLink("Reply", "NewAnswer", new { questionId = Model.QuestionId })
+    {
+            <h3>If you have more to say, do it!</h3>
+            @Html.ActionLink("Reply", "NewAnswer", new { questionId = Model.QuestionId })
     }
     else
     {
-        <h3>There are no answers yet.</h3>
-        @Html.ActionLink("Reply", "NewAnswer", new { questionId = Model.QuestionId })
+            <h3>There are no answers yet.</h3>
+            @Html.ActionLink("Reply", "NewAnswer", new { questionId = Model.QuestionId })
     }
 }
 </p>
 <table class="table">
     <tr>
         <th>
-            Text
+            Answer
         </th>
         <th>
             User
@@ -45,7 +53,10 @@
 @foreach (var item in Model.AnswerList) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.AnswerText)
+            <video width="100%" controls preload="metadata">
+                <source src="@Url.Content("~/Uploads/Answers/" + System.IO.Path.GetFileName(item.VideoPath))" type="video/mp4" />
+                <source src="@Url.Content("~/Uploads/Answers/" + System.IO.Path.GetFileName(item.VideoPath))" type="video/webm" />
+            </video>
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.UserName)
@@ -57,9 +68,9 @@
             @Html.DisplayFor(modelItem => item.DateLastEdited)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id })
+            @*@Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })*@
         </td>
     </tr>
 }

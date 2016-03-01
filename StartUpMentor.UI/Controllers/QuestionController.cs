@@ -42,24 +42,24 @@ namespace StartUpMentor.UI.Controllers
             }
         }
 
-        public async Task<ActionResult> Details(Guid id)
-        {
-            try
-            {
-                if (id == null) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //public async Task<ActionResult> Details(Guid id)
+        //{
+        //    try
+        //    {
+        //        if (id == null) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 
-                IQuestion question = await Service.GetAsync(id);
+        //        IQuestion question = await Service.GetAsync(id);
 
-                if (question == null)
-                    return HttpNotFound();
+        //        if (question == null)
+        //            return HttpNotFound();
 
-                return View(question);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
+        //        return View(question);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw ex;
+        //    }
+        //}
 
         public ActionResult NewQuestion(Guid fieldId)
         {
@@ -73,16 +73,13 @@ namespace StartUpMentor.UI.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> NewQuestion(Guid fieldId, QuestionViewModel qvm, HttpPostedFileBase file)
         {
-
             try
             {
-                #region TO-DO Video upload
-                //Verify that user selected a file
                 if (ModelState.IsValid)
                 {
                     if (file != null && file.ContentLength > 0)
                     {
-                        string[] validFileTypes = { "avi", "mpeg", "mp4","MP4" };
+                        string[] validFileTypes = { "avi", "mpeg", "mp4","MP4","webm" };
                         var fileName = Guid.NewGuid() + Path.GetFileName(file.FileName);
                         var contentLenght = file.ContentLength;
                         var contentType = file.ContentType;
@@ -98,8 +95,6 @@ namespace StartUpMentor.UI.Controllers
                                 break;
                             }
                         }
-
-                        //var filePath = Path.Combine(Server.MapPath("~/App_Data/Uploads"), fileName);
 
                         if (!isValidFile)
                         {
@@ -119,27 +114,8 @@ namespace StartUpMentor.UI.Controllers
 
                             return RedirectToAction("Index", new { fieldId = qvm.FieldId });
                         }
-
-                        //qvm.Date = DateTime.Now;
-                        //qvm.FieldId = fieldId;
-                        ////Save video path to database
-                        //qvm.VideoPath = filePath;
-                        //await Service.AddAsync(AutoMapper.Mapper.Map<Question>(qvm));
-
-                        //return RedirectToAction("Index", new { fieldId = qvm.FieldId });
                     }
                 }
-                #endregion
-
-                //if (ModelState.IsValid)
-                //{
-                //    qvm.Date = DateTime.Now;
-                //    qvm.FieldId = fieldId;
-                //    //OVDJE TREBA BITI VIDEO UPLOAD
-                //    await Service.AddAsync(AutoMapper.Mapper.Map<Question>(qvm));
-
-                //    return RedirectToAction("Index", new { fieldId = qvm.FieldId });
-                //}
 
                 return View(qvm);
             }
@@ -179,6 +155,26 @@ namespace StartUpMentor.UI.Controllers
             {
                 throw ex;
             }
+        }
+
+        public async Task<ActionResult> Delete(Guid id)
+        {
+            var questionToDelete = await Service.GetAsync(id);
+
+            if (questionToDelete == null)
+                return HttpNotFound();
+
+            return View(questionToDelete);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> DeleteQuestion(Guid id)
+        {
+            var questionToDelete = await Service.GetAsync(id);
+
+            await Service.DeleteAsync(id);
+            return RedirectToAction("Index", new { fieldId = questionToDelete.FieldId});
         }
     }
 }

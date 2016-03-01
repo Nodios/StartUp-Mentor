@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace StartUpMentor.UI.Models.User
+namespace StartUpMentor.UI.Models
 {
-    public class UserRegisterVM
+    public class VideoViewModel
     {
     }
 }

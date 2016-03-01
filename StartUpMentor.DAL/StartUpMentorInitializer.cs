@@ -47,6 +47,7 @@ namespace StartUpMentor.DAL
 		   //    result = UserManager.AddToRole(user.Id, "Admin");
 
 
+<<<<<<< HEAD
 		   context.Fields.Add(new FieldEntity() 
 		   {
 			   Name = "IT",
@@ -91,6 +92,56 @@ namespace StartUpMentor.DAL
 				   }
 			   }
 		   });
+=======
+            context.Fields.Add(new FieldEntity() 
+            {
+                Name = "IT",
+                Questions = new List<QuestionEntity>()
+                {
+                    new QuestionEntity()
+                    {
+                        Title = "How to C#?",
+                        QuestionText = "How to create this project?",
+                        VideoPath = "null",
+                        Date = DateTime.Parse("2015/12/20"),
+                        UserName = "Dino",
+                        Answers = new List<AnswerEntity>()
+                        {
+                            new AnswerEntity()
+                            {
+                                AnswerText = "Ovo je testni odgovor",
+                                UserName = "Ivan",
+                                VideoPath = "null",
+                                Date = DateTime.Parse("2016/01/23")
+                            }
+                        }
+                    },
+                    new QuestionEntity()
+                    {
+                        Title = "How to Java?",
+                        QuestionText = "How to create this project in Java?",
+                        VideoPath = "null",
+                        Date = DateTime.Parse("2015/12/20"),
+                        UserName = "Luka"
+                    }                    
+                }
+            });
+            context.Fields.Add(new FieldEntity()
+            {
+                Name="Economy",
+                Questions = new List<QuestionEntity>()
+                {
+                    new QuestionEntity()
+                    {
+                        Title = "How to plan?",
+                        QuestionText = "I have no idea?",
+                        VideoPath = "null",
+                        Date = DateTime.Parse("2015/12/20"),
+                        UserName = "Ivan"
+                    }
+                }
+            });
+>>>>>>> remotes/origin/video
 
 		   context.SaveChanges();
 

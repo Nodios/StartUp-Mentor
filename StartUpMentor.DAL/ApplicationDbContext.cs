@@ -40,6 +40,7 @@ namespace StartUpMentor.DAL
             modelBuilder.Configurations.Add(new UserMap());
 
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+            modelBuilder.Conventions.Add<ManyToManyCascadeDeleteConvention>();
 
             base.OnModelCreating(modelBuilder);
         }
