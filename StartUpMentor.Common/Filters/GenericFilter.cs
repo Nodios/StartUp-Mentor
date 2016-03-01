@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace StartUpMentor.Common.Filters
 {
-    public class GenericFilter
+	public class GenericFilter
     {
         public string SearchString { get; set; }
         public string SortOrder { get; set; }

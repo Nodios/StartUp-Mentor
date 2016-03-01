@@ -1,113 +1,92 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
+﻿using StartUpMentor.Service;
+using StartUpMentor.Service.Common;
+using System;
 using System.Linq;
-using System.Security.Claims;
-using System.Threading.Tasks;
 using System.Web;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
-using Microsoft.AspNet.Identity.Owin;
-using Microsoft.Owin;
-using Microsoft.Owin.Security;
-using StartUpMentor.DAL;
-using StartUpMentor.DAL.Models;
-//using StartUpMentor.UI.Models;
-//using ApplicationDbContext = StartUpMentor.DAL.ApplicationDbContext;
-//using ApplicationUser = StartUpMentor.DAL.Models.ApplicationUser;
+using System.Threading.Tasks;
+using StartUpMentor.Model.Common;
 
 namespace StartUpMentor.UI
 {
-    public class EmailService : IIdentityMessageService
-    {
-        public Task SendAsync(IdentityMessage message)
-        {
-            // Plug in your email service here to send an email.
-            return Task.FromResult(0);
-        }
-    }
+	class IdentityModule : IHttpModule
+	{
 
-    public class SmsService : IIdentityMessageService
-    {
-        public Task SendAsync(IdentityMessage message)
-        {
-            // Plug in your SMS service here to send a text message.
-            return Task.FromResult(0);
-        }
-    }
+		protected IUserService UserService { get; set; }
+		protected ISecurityService SecurityService { get; set; }
+		protected ISecurityFactory SecurityFactory { get; set; }
 
-    // Configure the application user manager used in this application. UserManager is defined in ASP.NET Identity and is used by the application.
-    public class ApplicationUserManager : UserManager<ApplicationUser>
-    {
-        public ApplicationUserManager(IUserStore<ApplicationUser> store)
-            : base(store)
-        {
-        }
+		public IdentityModule(IUserService UserService, ISecurityService SecurityService, ISecurityFactory SecurityFactory)
+		{
+			this.UserService = UserService;
+			this.SecurityService = SecurityService;
+			this.SecurityFactory = SecurityFactory;
+		}
 
-        public static ApplicationUserManager Create(IdentityFactoryOptions<ApplicationUserManager> options, IOwinContext context) 
-        {
-            var manager = new ApplicationUserManager(new UserStore<ApplicationUser>(context.Get<ApplicationDbContext>()));
-            // Configure validation logic for usernames
-            manager.UserValidator = new UserValidator<ApplicationUser>(manager)
-            {
-                AllowOnlyAlphanumericUserNames = false,
-                RequireUniqueEmail = true
-            };
+		public void Dispose() { }
 
-            // Configure validation logic for passwords
-            manager.PasswordValidator = new PasswordValidator
-            {
-                RequiredLength = 6,
-                RequireNonLetterOrDigit = false,
-                RequireDigit = false,
-                RequireLowercase = false,
-                RequireUppercase = false,
-            };
+		public string ModuleName { get { return "IdentityModule"; } }
 
-            // Configure user lockout defaults
-            manager.UserLockoutEnabledByDefault = true;
-            manager.DefaultAccountLockoutTimeSpan = TimeSpan.FromMinutes(5);
-            manager.MaxFailedAccessAttemptsBeforeLockout = 5;
+		public void Init(HttpApplication context)
+		{
+			context.AuthenticateRequest += (new EventHandler(this.AuthenticateUser));
+		}
 
-            // Register two factor authentication providers. This application uses Phone and Emails as a step of receiving a code for verifying the user
-            // You can write your own provider and plug it in here.
-            manager.RegisterTwoFactorProvider("Phone Code", new PhoneNumberTokenProvider<ApplicationUser>
-            {
-                MessageFormat = "Your security code is {0}"
-            });
-            manager.RegisterTwoFactorProvider("Email Code", new EmailTokenProvider<ApplicationUser>
-            {
-                Subject = "Security Code",
-                BodyFormat = "Your security code is {0}"
-            });
-            manager.EmailService = new EmailService();
-            manager.SmsService = new SmsService();
-            var dataProtectionProvider = options.DataProtectionProvider;
-            if (dataProtectionProvider != null)
-            {
-                manager.UserTokenProvider = 
-                    new DataProtectorTokenProvider<ApplicationUser>(dataProtectionProvider.Create("ASP.NET Identity"));
-            }
-            return manager;
-        }
-    }
+		private void AuthenticateUser(Object source, EventArgs e)
+		{
+			var cookie = System.Web.HttpContext.Current.Request.Cookies["identity"];
+			IUserPrincipal userPrincipal;
 
-    // Configure the application sign-in manager which is used in this application.
-    public class ApplicationSignInManager : SignInManager<ApplicationUser, string>
-    {
-        public ApplicationSignInManager(ApplicationUserManager userManager, IAuthenticationManager authenticationManager)
-            : base(userManager, authenticationManager)
-        {
-        }
+			if (cookie != null && cookie.Value != null)
+			{
+				userPrincipal = Task.Run(async () => { return await SecurityService.Authenticate(cookie.Value); }).Result;
+			}
+			else
+			{
+				userPrincipal = SecurityFactory.CreatePrincipal();
+			}
 
-        public override Task<ClaimsIdentity> CreateUserIdentityAsync(ApplicationUser user)
-        {
-            return user.GenerateUserIdentityAsync((ApplicationUserManager)UserManager);
-        }
+			HttpContext.Current.User = userPrincipal;
 
-        public static ApplicationSignInManager Create(IdentityFactoryOptions<ApplicationSignInManager> options, IOwinContext context)
-        {
-            return new ApplicationSignInManager(context.GetUserManager<ApplicationUserManager>(), context.Authentication);
-        }
-    }
+			return;
+		}
+	}
+
+	public class AuthorizeAttribute : System.Web.Mvc.AuthorizeAttribute
+	{
+		public AuthorizeAttribute() : base() { }
+
+		protected new virtual bool AuthorizeCore(HttpContextBase httpContext)
+		{
+			var user = httpContext.User;
+			var roles = base.Roles.Split(',');
+			foreach(var role in roles)
+			{
+				if (user.IsInRole(role))
+				{
+					return true;
+				}
+			}
+			
+			return false;
+		}
+
+		protected new void HandleUnauthorizedRequest(System.Web.Mvc.AuthorizationContext filterContext)
+		{
+			return;
+		}
+
+		public override void OnAuthorization(System.Web.Mvc.AuthorizationContext filterContext)
+		{
+			if( AuthorizeCore(filterContext.HttpContext))
+			{
+				return;
+			}
+			HandleUnauthorizedRequest(filterContext);
+		}
+
+		protected new HttpValidationStatus OnCacheAuthorization(HttpContextBase httpContext)
+		{
+			return new HttpValidationStatus();
+		}
+	}
 }

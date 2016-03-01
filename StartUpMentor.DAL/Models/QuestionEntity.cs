@@ -21,7 +21,7 @@ namespace StartUpMentor.DAL.Models
         //Fk for User
         public string UserId { get; set; }
         //One to one - Question is related to only one User
-        public virtual ApplicationUser User { get; set; }
+        public virtual UserEntity User { get; set; }
 
         //One to many - One Question can have many Answers
         public virtual ICollection<AnswerEntity> Answers { get; set; }

@@ -4,14 +4,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
 using System.Threading.Tasks;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 
 namespace StartUpMentor.Repository.GenericRepository
 {
-    public class GenericRepository : IGenericRepository
+	public class GenericRepository : IGenericRepository
     {
         #region Fields
         protected IApplicationDbContext Context { get; private set; }
@@ -41,7 +40,7 @@ namespace StartUpMentor.Repository.GenericRepository
             return Context.Set<T>();
         }
 
-        public async Task<T> GetAsync<T>(Expression<Func<T, bool>> match) where T : class
+		public async Task<T> GetAsync<T>(Expression<Func<T, bool>> match) where T : class
         {
             return await Context.Set<T>().FirstAsync(match);
         }

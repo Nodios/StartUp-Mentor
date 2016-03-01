@@ -2,14 +2,13 @@
 using StartUpMentor.Repository.Common;
 using StartUpMentor.Service.Common;
 using System;
-using System.Collections.Generic;
-using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace StartUpMentor.Service
 {
-    public class UserService : IUserService
+	public class UserService : IUserService
     {
         protected IUserRepository Repository { get; private set; }
 
@@ -18,7 +17,7 @@ namespace StartUpMentor.Service
             Repository = repository;
         }
 
-        public async Task<IApplicationUser> FindAsync(string username)
+        public async Task<IUser> FindAsync(string username)
         {
             try
             {
@@ -30,11 +29,24 @@ namespace StartUpMentor.Service
             }
         }
 
-        public async Task<IApplicationUser> FindAsync(string username, string password)
+        public async Task<IUser> FindAsync(string Email, string password)
         {
             try
             {
-                return await Repository.GetAsync(username, password);
+				var user = await Repository.GetByEmail(Email);
+				if(user != null)
+				{
+					string passwordHash = await HashPassword(password, user.salt);
+					if(user.passwordHash == passwordHash)
+					{
+						return user;
+					}
+					else
+					{
+						return null;
+					}
+				}
+				return null;
             }
             catch (Exception ex)
             {
@@ -42,11 +54,14 @@ namespace StartUpMentor.Service
             }
         }
 
-        public async Task<bool> RegisterUser(IApplicationUser user, string password)
+        public async Task<bool> RegisterUser(IUser user, string password)
         {
             try
             {
-                return await Repository.RegisterUser(user, password);
+				user.salt = await GenerateSalt();
+				user.passwordHash = await HashPassword(password, user.salt);
+				var result = await Repository.RegisterUser(user);
+				return result;
             }
             catch (Exception ex)
             {
@@ -54,7 +69,26 @@ namespace StartUpMentor.Service
             }
         }
 
-        public async Task<IApplicationUser> UpdateEmailOrUsernameAsync(IApplicationUser user, string password)
+		private async Task<string> GenerateSalt()
+		{
+			byte[] byteArray = new byte[16];
+			RNGCryptoServiceProvider rng = new RNGCryptoServiceProvider();
+			rng.GetBytes(byteArray);
+			return Convert.ToBase64String(byteArray);
+		}
+
+		private async Task<string> HashPassword(string password,string salt)
+		{
+			byte[] byteArraySalt = Encoding.Default.GetBytes(salt);
+
+			Rfc2898DeriveBytes hasher = new Rfc2898DeriveBytes(password, byteArraySalt);
+			hasher.IterationCount = 128;
+			var test = hasher.GetHashCode();
+			var output = Convert.ToBase64String(hasher.GetBytes(64));
+			return output;
+		}
+
+		public async Task<IUser> UpdateEmailOrUsernameAsync(IUser user, string password)
         {
             try
             {

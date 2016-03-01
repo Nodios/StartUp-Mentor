@@ -1,26 +1,19 @@
-﻿using System;
-using System.Globalization;
+﻿/*
 using System.Linq;
-using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using StartUpMentor.DAL;
-using StartUpMentor.DAL.Models;
 using StartUpMentor.Service.Common;
-using Microsoft.AspNet.Identity.EntityFramework;
 using StartUpMentor.UI.Models;
 
 namespace StartUpMentor.UI.Controllers
 {
-    [Authorize]
+	[Authorize]
     public class AccountController : Controller
     {
         protected IUserService Service { get; private set; }
-        private UserManager<StartUpMentor.DAL.Models.ApplicationUser> manager;
+        private UserManager<StartUpMentor.DAL.Models.IUser> manager;
 
         private ApplicationSignInManager _signInManager;
 
@@ -492,3 +485,4 @@ namespace StartUpMentor.UI.Controllers
         #endregion
     }
 }
+*/

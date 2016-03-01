@@ -1,8 +1,6 @@
-﻿using Microsoft.AspNet.Identity;
-
-namespace StartUpMentor.Repository.Common.IGenericRepository
+﻿namespace StartUpMentor.Repository.Common.IGenericRepository
 {
-    public interface IUnitOfWorkFactory
+	public interface IUnitOfWorkFactory
     {
         IUnitOfWork CreateUnitOfWork();
     }

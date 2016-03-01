@@ -1,15 +1,10 @@
 ﻿using StartUpMentor.DAL.Models;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity.ModelConfiguration;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace StartUpMentor.DAL.Mapping
 {
-    public class QuestionMap : EntityTypeConfiguration<QuestionEntity>
+	public class QuestionMap : EntityTypeConfiguration<QuestionEntity>
     {
         public QuestionMap()
         {

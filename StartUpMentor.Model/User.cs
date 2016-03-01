@@ -1,16 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using StartUpMentor.Model.Common;
-using Microsoft.AspNet.Identity.EntityFramework;
 using System.Security.Claims;
-using Microsoft.AspNet.Identity;
+using System;
 
 namespace StartUpMentor.Model
 {
-    public class ApplicationUser : IdentityUser, IApplicationUser
+	public class User : IUser
     {
         //One to one relation - User has one Info
         public virtual IInfo Info { get; set; }
@@ -23,12 +19,16 @@ namespace StartUpMentor.Model
         //If mentor - User can have many answers
         public virtual ICollection<IAnswer> Answers { get; set; }
 
-        public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
-        {
-            // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
-            var userIdentity = await manager.CreateIdentityAsync(this, DefaultAuthenticationTypes.ApplicationCookie);
-            // Add custom user claims here
-            return userIdentity;
-        }
-    }
+		public Guid Id { get; set; }
+
+		public string UserName { get; set; }
+
+		public string Email { get; set; }
+
+		public string passwordHash { get; set; }
+
+		public string salt { get; set; }
+
+		public ICollection<IRole> Roles { get; set; }
+	}
 }

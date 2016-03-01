@@ -1,11 +1,11 @@
-﻿using System.Collections.Generic;
+﻿/*
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
 
 namespace StartUpMentor.UI.Models
 {
-    public class IndexViewModel
+	public class IndexViewModel
     {
         public bool HasPassword { get; set; }
         public IList<UserLoginInfo> Logins { get; set; }
@@ -84,3 +84,4 @@ namespace StartUpMentor.UI.Models
         public ICollection<System.Web.Mvc.SelectListItem> Providers { get; set; }
     }
 }
+*/

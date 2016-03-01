@@ -2,14 +2,10 @@
 using StartUpMentor.Model;
 using StartUpMentor.Model.Common;
 using StartUpMentor.UI.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace StartUpMentor.UI.App_Start
 {
-    public class UIMappingConfiguration : Profile
+	public class UIMappingConfiguration : Profile
     {
         protected override void Configure()
         {
@@ -25,8 +21,14 @@ namespace StartUpMentor.UI.App_Start
             Mapper.CreateMap<IQuestion, QuestionViewModel>().ReverseMap();
             Mapper.CreateMap<Question, QuestionViewModel>().ReverseMap();
 
-            Mapper.CreateMap<IApplicationUser, UserViewModel>().ReverseMap();
-            Mapper.CreateMap<StartUpMentor.Model.ApplicationUser, UserViewModel>().ReverseMap();
+           // Mapper.CreateMap<IUser, UserViewModel>().ReverseMap();
+           // Mapper.CreateMap<StartUpMentor.Model.ApplicationUser, UserViewModel>().ReverseMap();
+
+			Mapper.CreateMap<IUser, UserViewModel>();
+			Mapper.CreateMap<UserViewModel, IUser>();
+
+			Mapper.CreateMap<IUser, RegisterViewModel>();
+			Mapper.CreateMap<RegisterViewModel, IUser>();
         }
     }
 }

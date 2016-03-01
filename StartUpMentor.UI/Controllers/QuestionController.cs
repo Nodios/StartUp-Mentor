@@ -1,7 +1,5 @@
 ﻿using StartUpMentor.Service.Common;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
@@ -11,14 +9,12 @@ using StartUpMentor.Model.Common;
 using StartUpMentor.UI.Models;
 using StartUpMentor.Model;
 using System.IO;
-using System.Configuration;
 using StartUpMentor.UI.Models.Question;
 using PagedList;
-using System.Web.UI;
 
 namespace StartUpMentor.UI.Controllers
 {
-    public class QuestionController : Controller
+	public class QuestionController : Controller
     {
         protected IQuestionService Service { get; private set; }
         protected IFieldService FieldService { get; private set; }

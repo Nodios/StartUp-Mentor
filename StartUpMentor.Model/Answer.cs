@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using StartUpMentor.Model.Common;
 
 namespace StartUpMentor.Model
 {
-    public class Answer : IAnswer
+	public class Answer : IAnswer
     {
         public Guid Id { get; set; }
 
@@ -21,7 +17,7 @@ namespace StartUpMentor.Model
         //FK for User
         public string UserId { get; set; }
         //One to many - One answer can be posted by a single user
-        public virtual IApplicationUser User { get; set; }
+        public virtual IUser User { get; set; }
 
         //FK for Question
         public Guid QuestionId { get; set; }

@@ -6,14 +6,13 @@ using StartUpMentor.Repository.Common.IGenericRepository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Data.Entity;
 using PagedList;
 
 namespace StartUpMentor.Repository
 {
-    public class QuestionRepository : IQuestionRepository
+	public class QuestionRepository : IQuestionRepository
     {
         protected IGenericRepository Repository { get; private set; }
 

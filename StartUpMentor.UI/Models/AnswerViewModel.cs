@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace StartUpMentor.UI.Models
 {
-    public class AnswerViewModel
+	public class AnswerViewModel
     {
         public Guid Id { get; set; }
 

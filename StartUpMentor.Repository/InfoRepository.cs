@@ -1,17 +1,13 @@
-﻿using StartUpMentor.Common.Filters;
-using StartUpMentor.DAL.Models;
+﻿using StartUpMentor.DAL.Models;
 using StartUpMentor.Model.Common;
 using StartUpMentor.Repository.Common;
 using StartUpMentor.Repository.Common.IGenericRepository;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace StartUpMentor.Repository
 {
-    public class InfoRepository : IInfoRepository
+	public class InfoRepository : IInfoRepository
     {
         protected IGenericRepository Repository { get; private set; }
 

@@ -1,16 +1,14 @@
-﻿using System;
+﻿/*
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using StartUpMentor.UI.Models;
 
 namespace StartUpMentor.UI.Controllers
 {
-    [Authorize]
+	[Authorize]
     public class ManageController : Controller
     {
         private ApplicationSignInManager _signInManager;
@@ -385,3 +383,4 @@ namespace StartUpMentor.UI.Controllers
 #endregion
     }
 }
+*/

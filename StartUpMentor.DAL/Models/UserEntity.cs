@@ -1,34 +1,24 @@
-﻿using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Security.Claims;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace StartUpMentor.DAL.Models
 {
-    public class ApplicationUser : IdentityUser
+	public class UserEntity
     {
-        public override string Id
-        {
-            get
-            {
-                return base.Id;
-            }
-            set
-            {
-                if (String.IsNullOrEmpty(Id))
-                    base.Id = Guid.NewGuid().ToString();
-                else
-                    base.Id = value;
-            }
-        }
+		[Key]
+		public Guid Id { get; set; }
 
-        [Index(IsUnique = true)]
-        public override string UserName { get; set; }
+		[Index(IsUnique = true)]
+		[StringLength(64)]
+		public string UserName { get; set; }
+
+		public string Email { get; set; }
+
+		public string passwordHash { get; set; }
+
+		public string salt { get; set; }
 
         //One to one relation - User has one Info
         public virtual InfoEntity Info { get; set; }
@@ -41,12 +31,6 @@ namespace StartUpMentor.DAL.Models
         //If mentor - User can have many answers
         public virtual ICollection<AnswerEntity> Answers { get; set; }
 
-        public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
-        {
-            // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
-            var userIdentity = await manager.CreateIdentityAsync(this, DefaultAuthenticationTypes.ApplicationCookie);
-            // Add custom user claims here
-            return userIdentity;
-        }
+		public virtual ICollection<RoleEntity> Roles { get; set; }
     }
 }

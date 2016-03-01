@@ -1,16 +1,12 @@
-﻿using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
+﻿/*
 using StartUpMentor.UI.Models;
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Web;
 using System.Web.Mvc;
 
 namespace StartUpMentor.UI.Controllers
 {
-    public class RoleController : Controller
+	public class RoleController : Controller
     {
         public RoleManager<IdentityRole> RoleManager { get; private set; }
 
@@ -52,3 +48,4 @@ namespace StartUpMentor.UI.Controllers
         //TODO: Add edit and delete for Roles
     }
 }
+*/

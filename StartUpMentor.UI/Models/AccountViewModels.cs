@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace StartUpMentor.UI.Models
 {
-    public class ExternalLoginConfirmationViewModel
+	public class ExternalLoginConfirmationViewModel
     {
         [Required]
         [Display(Name = "Email")]

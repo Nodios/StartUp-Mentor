@@ -2,19 +2,19 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
 using System.Threading.Tasks;
+using System.Data.Entity;
 
 namespace StartUpMentor.Repository.Common.IGenericRepository
 {
-    public interface IGenericRepository
+	public interface IGenericRepository
     {
         IUnitOfWork CreateUnitOfWork();
 
         Task<T> GetAsync<T>(Guid id) where T : class;
         IQueryable<T> GetWhere<T>() where T : class;
 
-        Task<T> GetAsync<T>(Expression<Func<T, bool>> match) where T : class;
+		Task<T> GetAsync<T>(Expression<Func<T, bool>> match) where T : class;
         Task<IEnumerable<T>> GetRangeAsync<T>(Expression<Func<T, bool>> match) where T : class;
         Task<IEnumerable<T>> GetRangeAsync<T>() where T : class;
 

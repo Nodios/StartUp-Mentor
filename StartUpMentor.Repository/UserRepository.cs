@@ -1,221 +1,151 @@
-﻿using StartUpMentor.Common.Filters;
-using StartUpMentor.Model.Common;
-using StartUpMentor.Repository.Common;
+﻿using StartUpMentor.Repository.Common;
 using StartUpMentor.Repository.Common.IGenericRepository;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
 using StartUpMentor.DAL.Models;
 using StartUpMentor.DAL;
+using StartUpMentor.Model.Common;
+using System.Linq.Expressions;
+using StartUpMentor.DAL.Models;
+using System.Data.Entity.Validation;
+using System.Linq;
 
 namespace StartUpMentor.Repository
 {
-    public class UserRepository : IUserRepository
-    {
-        protected IGenericRepository Repository { get; private set; }
-        protected IUserManagerFactory UserManagerFactory { get; private set; }
+	public class UserRepository : IUserRepository
+	{
+		protected IGenericRepository Repository { get; private set; }
 
-        public UserRepository(IGenericRepository repository, IUserManagerFactory userManagerFactory)
-        {
-            Repository = repository;
-            UserManagerFactory = userManagerFactory;
-        }
+		public UserRepository(IGenericRepository repository)
+		{
+			Repository = repository;
+		}
 
-        #region UserManager
-        public UserManager<ApplicationUser> CreateUserManager()
-        {
-            return UserManagerFactory.CreateUserManager();
-        }
+		public Task<int> AddUser(IUser user)
+		{
+			throw new NotImplementedException();
+		}
 
-        /// <summary>
-        /// Initialize user manager
-        /// </summary>
-        /// <returns>new user manager</returns>
-        private UserManager<ApplicationUser> createUserManager()
-        {
-            return new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
-        }
-        #endregion
+		public Task<int> DeleteAsync(Guid id)
+		{
+			throw new NotImplementedException();
+		}
 
-        public async Task<StartUpMentor.Model.Common.IApplicationUser> GetAsync(string username)
-        {
-            try
-            {
-                return AutoMapper.Mapper.Map<Model.Common.IApplicationUser>(await Repository.GetAsync<ApplicationUser>(u => u.UserName.Equals(username)));
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
+		public Task<int> DeleteAsync(IUser user)
+		{
+			throw new NotImplementedException();
+		}
 
-        public async Task<IEnumerable<Model.Common.IApplicationUser>> GetAsync(System.Linq.Expressions.Expression<Func<Model.Common.IApplicationUser, bool>> match)
-        {
-            try
-            {
-                return AutoMapper.Mapper.Map<IEnumerable<StartUpMentor.Model.Common.IApplicationUser>>(await Repository.GetRangeAsync<ApplicationUser>());
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
+		public Task<IEnumerable<IUser>> GetAsync(Expression<Func<IUser, bool>> match)
+		{
+			throw new NotImplementedException();
+		}
 
-        public async Task<Model.Common.IApplicationUser> GetAsync(string username, string password)
-        {
-            try
-            {
-                UserManager<ApplicationUser> userManager = CreateUserManager();
+		public async Task<IUser> GetAsync(string username)
+		{
+			try
+			{
+				UserEntity user = Repository.GetWhere<UserEntity>().Where(u => u.UserName == username).ToList().DefaultIfEmpty(null).First();
+	
+				if (user == null)
+				{
+					return null;
+				}
+				else
+				{
+					return AutoMapper.Mapper.Map<IUser>(user);
+				}
 
-                ApplicationUser user = await userManager.FindAsync(username, password);
+			}
+			catch (Exception ex)
+			{
+				throw ex;
+			}
+		}
 
-                return AutoMapper.Mapper.Map<StartUpMentor.Model.Common.IApplicationUser>(user);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
+		public async Task<IUser> GetByEmail(string Email)
+		{
+			try
+			{
+				UserEntity user = Repository.GetWhere<UserEntity>().Where(e => e.Email == Email).ToList().DefaultIfEmpty(null).First();
 
-        public async Task<int> AddUser(Model.Common.IApplicationUser user)
-        {
-            try
-            {
-                return await Repository.AddAsync<ApplicationUser>(AutoMapper.Mapper.Map<ApplicationUser>(user));
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
+				if (user == null)
+				{
+					return null;
+				}
+				else
+				{
+					return AutoMapper.Mapper.Map<IUser>(user);
+				}
 
-        public async Task<bool> RegisterUser(Model.Common.IApplicationUser user, string password)
-        {
-            try
-            {
-                UserManager<ApplicationUser> userManager = this.CreateUserManager();
-                IdentityResult result = await userManager.CreateAsync(AutoMapper.Mapper.Map<ApplicationUser>(user), password);
+			}
+			catch (Exception ex)
+			{
+				throw ex;
+			}
+		}
 
-                return result.Succeeded;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
+		public Task<IUser> GetAsync(string username, string passwordHash)
+		{
+			throw new NotImplementedException();
+		}
 
-        public async Task<int> UpdateAsync(Model.Common.IApplicationUser user)
-        {
-            try
-            {
-                return await Repository.UpdateAsync<ApplicationUser>(AutoMapper.Mapper.Map<ApplicationUser>(user));
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
+		public async Task<bool> RegisterUser(IUser user, string password)
+		{
+			throw new NotImplementedException();
+		}
 
-        public async Task<Model.Common.IApplicationUser> UpdateUserAsync(Model.Common.IApplicationUser user, string password)
-        {
-            try
-            {
-                IUnitOfWork uow = Repository.CreateUnitOfWork();
-                bool passwordValid = false;
-                Task<ApplicationUser> result = null;
+		public async Task<bool> RegisterUser(IUser user)
+		{
+			try
+			{
+				var entityUser = AutoMapper.Mapper.Map<UserEntity>(user);
+				entityUser.Id = Guid.NewGuid();
 
-                UserManager<ApplicationUser> UserManager = CreateUserManager();
+				entityUser.Roles = new System.Collections.ObjectModel.Collection<RoleEntity>();
 
-                ApplicationUser userToCheck = await UserManager.FindByIdAsync(user.Id);
-                passwordValid = await UserManager.CheckPasswordAsync(userToCheck, password);
+				var asyncResult = await Repository.AddAsync(entityUser);
 
-                if (passwordValid)
-                    result = uow.UpdateWithAddAsync<ApplicationUser>(AutoMapper.Mapper.Map<ApplicationUser>(user));
-                else
-                    throw new Exception("Invalid password");
+				if (asyncResult != 0)
+				{
+					AutoMapper.Mapper.Map<UserEntity,IUser>(entityUser,user);
+					return true;
+				}
+				else
+				{
+					return false;
+				}
+			}
+			catch (DbEntityValidationException ex)
+			{
+				throw ex;
+			}
+			catch (Exception ex)
+			{
+				throw ex;
+			}
+		}
 
-                await uow.CommitAsync();
-                return await Task.FromResult(AutoMapper.Mapper.Map<StartUpMentor.Model.Common.IApplicationUser>(result.Result) as StartUpMentor.Model.Common.IApplicationUser);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
+		public Task<int> UpdateAsync(IUser user)
+		{
+			throw new NotImplementedException();
+		}
 
-        public async Task<Model.Common.IApplicationUser> UpdateUserEmailOrUsernameAsync(Model.Common.IApplicationUser user, string password)
-        {
-            try
-            {
-                IUnitOfWork uow = Repository.CreateUnitOfWork();
-                bool passwordValid = false;
-                Task<ApplicationUser> result = null;
+		public Task<IUser> UpdateUserAsync(IUser user, string password)
+		{
+			throw new NotImplementedException();
+		}
 
-                UserManager<ApplicationUser> UserManager = CreateUserManager();
+		public Task<IUser> UpdateUserEmailOrUsernameAsync(IUser user, string password)
+		{
+			throw new NotImplementedException();
+		}
 
-                ApplicationUser userToCheck = await UserManager.FindByIdAsync(user.Id);
-                passwordValid = await UserManager.CheckPasswordAsync(userToCheck, password);
+		public Task<bool> UpdateUserPasswordAsync(string userId, string oldPassword, string newPassword)
+		{
+			throw new NotImplementedException();
+		}
+	}
 
-                if (passwordValid)
-                    result = uow.UpdateWithAddAsync<ApplicationUser>(AutoMapper.Mapper.Map<ApplicationUser>(user), u => u.Email, u => u.UserName);
-                else
-                    throw new Exception("Invalid password");
-
-                await uow.CommitAsync();
-                return await Task.FromResult(AutoMapper.Mapper.Map<StartUpMentor.Model.Common.IApplicationUser>(result.Result) as StartUpMentor.Model.Common.IApplicationUser);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
-        public async Task<bool> UpdateUserPasswordAsync(string userId, string oldPassword, string newPassword)
-        {
-            try
-            {
-                UserManager<ApplicationUser> UserManager = CreateUserManager();
-                IdentityResult result = await UserManager.ChangePasswordAsync(userId, oldPassword, newPassword);
-
-                return result.Succeeded;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
-        public async Task<int> DeleteAsync(Model.Common.IApplicationUser user)
-        {
-            try
-            {
-                return await Repository.DeleteAsync<ApplicationUser>(AutoMapper.Mapper.Map<ApplicationUser>(user));
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
-        public async Task<int> DeleteAsync(Guid id)
-        {
-            try
-            {
-                return await this.DeleteAsync(AutoMapper.Mapper.Map<StartUpMentor.Model.Common.IApplicationUser>(await Repository.GetAsync<ApplicationUser>(id)));
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
-        public interface IUserManagerFactory
-        {
-            UserManager<ApplicationUser> CreateUserManager();
-        }
-    }
 }

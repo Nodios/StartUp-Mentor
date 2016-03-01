@@ -1,16 +1,14 @@
 ﻿using StartUpMentor.DAL;
 using StartUpMentor.Repository.Common.IGenericRepository;
 using System;
-using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace StartUpMentor.Repository.GenericRepository
 {
-    public class UnitOfWork : IUnitOfWork
+	public class UnitOfWork : IUnitOfWork
     {
         protected IApplicationDbContext Context { get; private set; }
 

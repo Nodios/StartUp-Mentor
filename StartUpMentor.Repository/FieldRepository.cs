@@ -6,13 +6,12 @@ using StartUpMentor.Repository.Common.IGenericRepository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using PagedList;
 
 namespace StartUpMentor.Repository
 {
-    public class FieldRepository : IFieldRepository
+	public class FieldRepository : IFieldRepository
     {
         protected IGenericRepository Repository { get; private set; }
 

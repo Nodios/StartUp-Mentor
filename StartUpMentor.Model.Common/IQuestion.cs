@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace StartUpMentor.Model.Common
 {
-    public interface IQuestion
+	public interface IQuestion
     {
         Guid Id { get; set; }
         string Title { get; set; }
@@ -23,7 +20,7 @@ namespace StartUpMentor.Model.Common
         //FK for User
         string UserId { get; set; }
         //One to one - Question is related to one user
-        IApplicationUser User { get; set; }
+        IUser User { get; set; }
 
         //One to many - One Question can have many Answers
         ICollection<IAnswer> Answers { get; set; }

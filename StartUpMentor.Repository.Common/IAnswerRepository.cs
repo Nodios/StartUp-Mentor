@@ -1,15 +1,12 @@
 ﻿using StartUpMentor.Model.Common;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using StartUpMentor.Common;
 using StartUpMentor.Common.Filters;
 
 namespace StartUpMentor.Repository.Common
 {
-    public interface IAnswerRepository
+	public interface IAnswerRepository
     {
         /// <summary>
         /// Get by id

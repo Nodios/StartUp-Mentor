@@ -1,9 +1,8 @@
 using System;
-using System.Collections.Generic;
 
 namespace StartUpMentor.DAL.Models
 {
-    public partial class InfoEntity
+	public partial class InfoEntity
     {
         public Guid Id { get; set; }
         public string FirstName { get; set; }
@@ -15,6 +14,6 @@ namespace StartUpMentor.DAL.Models
         public string UserId { get; set; }
 
         //One to one
-        public virtual ApplicationUser User { get; set; }
+        public virtual UserEntity User { get; set; }
     }
 }

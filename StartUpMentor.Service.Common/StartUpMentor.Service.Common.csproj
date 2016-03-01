@@ -42,6 +42,7 @@
     <Compile Include="IAnswerService.cs" />
     <Compile Include="IFieldService.cs" />
     <Compile Include="IQuestionService.cs" />
+    <Compile Include="ISecurityService.cs" />
     <Compile Include="IUserService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

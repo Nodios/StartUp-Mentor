@@ -1,14 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace StartUpMentor.Model.Common
 {
-    public interface IApplicationUser
+	public interface IUser
     {
-        string Id { get; set; }
+        Guid Id { get; set; }	
+
+		string UserName { get; set; }
+
+		string Email { get; set; }
+
+		string passwordHash { get; set; }
+
+		string salt { get; set; }
+
         //One to one relation - User has one Info
         IInfo Info { get; set; }
 
@@ -19,5 +25,7 @@ namespace StartUpMentor.Model.Common
         ICollection<IQuestion> Questions { get; set; }
         //If mentor - User can have many answers
         ICollection<IAnswer> Answers { get; set; }
+
+		ICollection<IRole> Roles { get; set; }
     }
 }

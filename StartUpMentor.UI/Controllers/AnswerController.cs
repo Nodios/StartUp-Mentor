@@ -6,9 +6,7 @@ using StartUpMentor.Service.Common;
 using StartUpMentor.UI.Models;
 using StartUpMentor.UI.Models.Answer;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using System.Web;
@@ -16,7 +14,7 @@ using System.Web.Mvc;
 
 namespace StartUpMentor.UI.Controllers
 {
-    public class AnswerController : Controller
+	public class AnswerController : Controller
     {
         protected IAnswerService Service { get; private set; }
         protected IQuestionService QuestionService { get; private set; }

@@ -1,32 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
 using StartUpMentor.DAL.Models;
-using StartUpMentor.Common;
 using StartUpMentor.DAL.Mapping;
+using StartUpMentor.Common;
 
 namespace StartUpMentor.DAL
 {
-    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>, IApplicationDbContext
+	public class ApplicationDbContext : DbContext, IApplicationDbContext
     {
         #region Constructors
-        public ApplicationDbContext()
-            : base(ConnectionStrings.CONNECTION, throwIfV1Schema: false)
+        public ApplicationDbContext() : base(ConnectionStrings.CONNECTION)
         {
-            base.RequireUniqueEmail = true;
-            Database.SetInitializer(new StartUpMentorInitializer());
+			Database.SetInitializer(new StartUpMentorInitializer());
         }
-        public ApplicationDbContext(string connection)
-            : base(connection, throwIfV1Schema: false)
-        {
-            base.RequireUniqueEmail = true;
-            Database.SetInitializer(new StartUpMentorInitializer());
+        public ApplicationDbContext(string connection) : base(connection)
+		{
+			Database.SetInitializer(new StartUpMentorInitializer());
         }
         #endregion
 
@@ -40,7 +29,7 @@ namespace StartUpMentor.DAL
         public DbSet<FieldEntity> Fields { get; set; }
         public DbSet<InfoEntity> Info { get; set; }
         public DbSet<QuestionEntity> Questions { get; set; }
-
+		public DbSet<TokenEntity> Tokens { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
