@@ -1,4 +1,0 @@
-C:\Users\Luka\Desktop\Startup Mentor\StartUp-Mentor\StartUpMentor.Common\bin\Debug\StartUpMentor.Common.dll
-C:\Users\Luka\Desktop\Startup Mentor\StartUp-Mentor\StartUpMentor.Common\bin\Debug\StartUpMentor.Common.pdb
-C:\Users\Luka\Desktop\Startup Mentor\StartUp-Mentor\StartUpMentor.Common\obj\Debug\StartUpMentor.Common.dll
-C:\Users\Luka\Desktop\Startup Mentor\StartUp-Mentor\StartUpMentor.Common\obj\Debug\StartUpMentor.Common.pdb

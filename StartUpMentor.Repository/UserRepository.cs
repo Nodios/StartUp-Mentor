@@ -22,6 +22,13 @@ namespace StartUpMentor.Repository
 			Repository = repository;
 		}
 
+		public async Task<IEnumerable<IUser>> GetAllUsers()
+		{
+			var users = Repository.GetWhere<UserEntity>().AsEnumerable<UserEntity>();
+			var result = AutoMapper.Mapper.Map<IEnumerable<IUser>>(users);
+			return result;
+		}
+
 		public Task<int> AddUser(IUser user)
 		{
 			throw new NotImplementedException();

@@ -17,7 +17,12 @@ namespace StartUpMentor.Service
             Repository = repository;
         }
 
-        public async Task<IUser> FindAsync(string username)
+		public async Task<System.Collections.Generic.IEnumerable<IUser>> GetAllUsers()
+		{
+			return await Repository.GetAllUsers();
+		}
+
+		public async Task<IUser> FindAsync(string username)
         {
             try
             {

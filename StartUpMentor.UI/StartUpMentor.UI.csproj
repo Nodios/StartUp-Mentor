@@ -290,13 +290,10 @@
     <Content Include="Views\Answer\Index.cshtml" />
     <Content Include="Views\Answer\NewAnswer.cshtml" />
     <Content Include="Views\Answer\Edit.cshtml" />
-<<<<<<< HEAD
     <Content Include="Views\User\Register.cshtml" />
     <Content Include="Views\User\Login.cshtml" />
-=======
     <Content Include="Uploads\VideoStreaming.ashx" />
     <Content Include="Views\Question\Delete.cshtml" />
->>>>>>> remotes/origin/video
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

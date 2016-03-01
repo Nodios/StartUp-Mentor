@@ -1,13 +1,4 @@
-<<<<<<< HEAD
-﻿namespace StartUpMentor.Common.VideoHelper
-{
-	public static class Helper
-    {
-        
-    }
-}
-=======
-﻿//using System;
+//using System;
 //using System.Web;
 //using System.Collections.Generic;
 //using System.Linq;
@@ -85,4 +76,3 @@
 //        }
 //    }
 //}
->>>>>>> remotes/origin/video

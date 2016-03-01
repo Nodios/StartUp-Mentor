@@ -22,9 +22,10 @@ namespace StartUpMentor.UI.Controllers
 			this.SecurityService = SecurityService;
 		}
 
-		public ActionResult Index()
+		public async Task<ActionResult> Index()
 		{
-			return View();
+			var users = await Service.GetAllUsers();
+			return View(users);
 		}
 
 		public ActionResult Register()

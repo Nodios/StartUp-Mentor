@@ -8,6 +8,7 @@ namespace StartUpMentor.Repository.Common
 {
 	public interface IUserRepository
     {
+		Task<IEnumerable<IUser>> GetAllUsers();
         Task<IUser> GetAsync(string username);
         Task<IEnumerable<IUser>> GetAsync(Expression<Func<IUser, bool>> match);
 		Task<IUser> GetAsync(string username, string passwordHash);

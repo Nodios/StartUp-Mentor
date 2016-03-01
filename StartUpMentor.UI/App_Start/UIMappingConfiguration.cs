@@ -2,14 +2,7 @@
 using StartUpMentor.Model;
 using StartUpMentor.Model.Common;
 using StartUpMentor.UI.Models;
-<<<<<<< HEAD
-=======
 using StartUpMentor.UI.Models.Question;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
->>>>>>> remotes/origin/video
 
 namespace StartUpMentor.UI.App_Start
 {
