@@ -5,13 +5,14 @@ namespace StartUpMentor.Model.Common
 {
 	public interface IUser
     {
+
         Guid Id { get; set; }	
 
 		string UserName { get; set; }
 
 		string Email { get; set; }
 
-		string passwordHash { get; set; }
+		string PasswordHash { get; set; }
 
 		string salt { get; set; }
 

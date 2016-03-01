@@ -211,6 +211,8 @@
     <Compile Include="Models\Question\QuestionIndexViewModel.cs" />
     <Compile Include="Models\UserViewModel.cs" />
     <Compile Include="Models\User\UserFieldData.cs" />
+    <Compile Include="Models\UserViewModel.cs" />
+    <Compile Include="Models\VideoViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Uploads\VideoStreaming.ashx.cs">
@@ -299,6 +301,10 @@
     <Folder Include="App_Data\" />
     <Folder Include="Uploads\Answers\" />
     <Folder Include="Uploads\Questions\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Views\User\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

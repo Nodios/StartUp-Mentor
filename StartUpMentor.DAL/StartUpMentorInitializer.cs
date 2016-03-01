@@ -96,6 +96,7 @@ namespace StartUpMentor.DAL
             context.Fields.Add(new FieldEntity() 
             {
                 Name = "IT",
+<<<<<<< HEAD
                 Questions = new List<QuestionEntity>()
                 {
                     new QuestionEntity()
@@ -125,10 +126,32 @@ namespace StartUpMentor.DAL
                         UserName = "Luka"
                     }                    
                 }
+=======
+                //Questions = new List<QuestionEntity>()
+                //{
+                //    new QuestionEntity()
+                //    {
+                //        Title = "How to C#?",
+                //        QuestionText = "How to create this project?",
+                //        Date = DateTime.Parse("2015/12/20"),
+                //        UserName = "Dino",
+                //        User = user
+                //    },
+                //    new QuestionEntity()
+                //    {
+                //        Title = "How to Java?",
+                //        QuestionText = "How to create this project in Java?",
+                //        Date = DateTime.Parse("2015/12/20"),
+                //        UserName = "Luka",
+                //        User = user
+                //    }                    
+                //}
+>>>>>>> c2ed2912f8c20e58d04b3078661002db0eb318f4
             });
             context.Fields.Add(new FieldEntity()
             {
                 Name="Economy",
+<<<<<<< HEAD
                 Questions = new List<QuestionEntity>()
                 {
                     new QuestionEntity()
@@ -140,6 +163,19 @@ namespace StartUpMentor.DAL
                         UserName = "Ivan"
                     }
                 }
+=======
+                //Questions = new List<QuestionEntity>()
+                //{
+                //    new QuestionEntity()
+                //    {
+                //        Title = "How to plan?",
+                //        QuestionText = "I have no idea?",
+                //        Date = DateTime.Parse("2015/12/20"),
+                //        UserName = "Ivan",
+                //        User = user
+                //    }
+                //}
+>>>>>>> c2ed2912f8c20e58d04b3078661002db0eb318f4
             });
 >>>>>>> remotes/origin/video
 

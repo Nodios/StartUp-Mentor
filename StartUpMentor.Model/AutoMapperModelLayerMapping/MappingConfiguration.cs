@@ -38,7 +38,20 @@ namespace StartUpMentor.Model.AutoMapperModelLayerMapping
 			Mapper.CreateMap<IRole, string>().ConvertUsing(source => source.roleName ?? string.Empty);
 			Mapper.CreateMap<ICollection<Role>, ICollection<string>>();
 
-		}
+		
+            Mapper.CreateMap<StartUpMentor.DAL.Models.ApplicationUser, IApplicationUser>().ReverseMap();
+            Mapper.CreateMap<StartUpMentor.DAL.Models.ApplicationUser, ApplicationUser>().ReverseMap();
+            Mapper.CreateMap<ApplicationUser, IApplicationUser>().ReverseMap();
+
+            Mapper.CreateMap<ApplicationUser, IApplicationUser>().ReverseMap();
+            Mapper.CreateMap<ApplicationUser, ApplicationUser>().ReverseMap();
+            Mapper.CreateMap<ApplicationUser, IApplicationUser>().ReverseMap();
+
+            Mapper.CreateMap<VideoEntity, IVideo>().ReverseMap();
+            Mapper.CreateMap<VideoEntity, Video>().ReverseMap();
+            Mapper.CreateMap<Video, IVideo>().ReverseMap();
+
+        }
 
         //public override string ProfileName
         //{
