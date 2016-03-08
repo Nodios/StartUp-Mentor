@@ -1,11 +1,7 @@
 ﻿using StartUpMentor.Service.Common;
 using System;
-using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Mvc;
-using System.Data.Entity;
-using StartUpMentor.DAL.Models;
-using StartUpMentor.UI.Models;
 using System.Web;
 using StartUpMentor.Model.Common;
 
@@ -36,6 +32,11 @@ namespace StartUpMentor.UI.Controllers
 		[HttpPost]
 		public async Task<ActionResult> Register(StartUpMentor.UI.Models.RegisterViewModel viewModel)
 		{
+			if(! await SecurityService.VerifyPassword(viewModel.Password))
+			{ 
+				ModelState.AddModelError("Password", "Password must contain one lowercase letter, one uppercase letter, one number and one special character (!#$%&@*?==");
+            }
+
 			if (!ModelState.IsValid)
 			{
 				return View(viewModel);
@@ -108,6 +109,26 @@ namespace StartUpMentor.UI.Controllers
 			}
 
 			return View("Index");
+		}
+
+		public ActionResult Manage()
+		{
+			var model = new StartUpMentor.UI.Models.User.IndexViewModel();
+			model.HasPassword = true;
+
+            return View(model);
+		}
+
+		[HttpPost]
+		public ActionResult AddRole()
+		{
+			return View("Manage");
+		}
+
+		[HttpPost]
+		public ActionResult RemoveRole()
+		{
+			return View("Manage");
 		}
 	}
 

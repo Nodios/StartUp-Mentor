@@ -1,7 +1,5 @@
 ﻿using Ninject.Extensions.Factory;
-using StartUpMentor.DAL;
 using StartUpMentor.Model.Common;
-using System.Data.Entity;
 
 namespace StartUpMentor.Model
 {

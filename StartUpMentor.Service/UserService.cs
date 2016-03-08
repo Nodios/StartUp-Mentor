@@ -41,8 +41,8 @@ namespace StartUpMentor.Service
 				var user = await Repository.GetByEmail(Email);
 				if(user != null)
 				{
-					string passwordHash = await HashPassword(password, user.salt);
-					if(user.passwordHash == passwordHash)
+					string PasswordHash = await HashPassword(password, user.salt);
+					if(user.PasswordHash == PasswordHash)
 					{
 						return user;
 					}
@@ -64,7 +64,7 @@ namespace StartUpMentor.Service
             try
             {
 				user.salt = await GenerateSalt();
-				user.passwordHash = await HashPassword(password, user.salt);
+				user.PasswordHash = await HashPassword(password, user.salt);
 				var result = await Repository.RegisterUser(user);
 				return result;
             }

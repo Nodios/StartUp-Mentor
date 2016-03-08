@@ -4,10 +4,8 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using StartUpMentor.DAL.Models;
-using StartUpMentor.DAL;
 using StartUpMentor.Model.Common;
 using System.Linq.Expressions;
-using StartUpMentor.DAL.Models;
 using System.Data.Entity.Validation;
 using System.Linq;
 

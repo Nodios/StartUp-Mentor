@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using StartUpMentor.Model.Common;
@@ -59,6 +58,11 @@ namespace StartUpMentor.Service
 			var principal = SecurityFactory.CreatePrincipal(identity);
 
 			return principal;
+		}
+
+		public async Task<bool> VerifyPassword(string password)
+		{
+			return System.Text.RegularExpressions.Regex.IsMatch(password, @"^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!#$%&@*?=])");
 		}
 
 		public async Task<IUserIdentity> GetIdentity(IUser user, bool isAuthenticated)

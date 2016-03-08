@@ -1,15 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Web;
 
 namespace StartUpMentor.UI.Uploads
 {
-    /// <summary>
-    /// Summary description for VideoStreaming
-    /// </summary>
-    public class VideoStreaming : IHttpHandler
+	/// <summary>
+	/// Summary description for VideoStreaming
+	/// </summary>
+	public class VideoStreaming : IHttpHandler
     {
         private void RangeDownload(string fullPath, HttpContext context)
         {

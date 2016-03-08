@@ -1,7 +1,5 @@
-﻿using StartUpMentor.Service;
-using StartUpMentor.Service.Common;
+﻿using StartUpMentor.Service.Common;
 using System;
-using System.Linq;
 using System.Web;
 using System.Threading.Tasks;
 using StartUpMentor.Model.Common;

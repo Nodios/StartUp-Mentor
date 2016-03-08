@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using StartUpMentor.Model.Common;
 
@@ -21,6 +18,8 @@ namespace StartUpMentor.Service.Common
 
 		Task<IUserPrincipal> Authenticate(string token);
 		Task<IUserPrincipal> Authenticate(Guid userId, string UserName, string tokenHash);
+
+		Task<bool> VerifyPassword(string password);
 
         Task<IUserIdentity> GetIdentity(IUser user, bool isAuthenticated);
 		Task<IUserPrincipal> GetPrincipal(IUserIdentity identity);

@@ -1,7 +1,5 @@
 ﻿using System.Collections.Generic;
-using System.Threading.Tasks;
 using StartUpMentor.Model.Common;
-using System.Security.Claims;
 using System;
 
 namespace StartUpMentor.Model
@@ -25,7 +23,7 @@ namespace StartUpMentor.Model
 
 		public string Email { get; set; }
 
-		public string passwordHash { get; set; }
+		public string PasswordHash { get; set; }
 
 		public string salt { get; set; }
 

@@ -2,7 +2,6 @@
 using StartUpMentor.DAL;
 using StartUpMentor.Repository.Common.IGenericRepository;
 using StartUpMentor.Repository.GenericRepository;
-using StartUpMentor.DAL.Models;
 using StartUpMentor.Repository.Common;
 
 namespace StartUpMentor.Repository
