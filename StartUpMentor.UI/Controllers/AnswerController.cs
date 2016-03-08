@@ -7,6 +7,7 @@ using StartUpMentor.UI.Models;
 using StartUpMentor.UI.Models.Answer;
 using System;
 using System.IO;
+using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using System.Web;
@@ -157,70 +158,104 @@ namespace StartUpMentor.UI.Controllers
             }
         }
 
-        //#region Video stream
-        //public void GetVideoStream(string path, string contentType)
-        //{
-        //    HttpContext.Response.AddHeader("Content-Type", contentType);
-        //    RangeDownload(path, HttpContext.ApplicationInstance.Context);
-        //}
+		#region Video stream
+		public void GetVideoStream(string fileName, string contentType)
+		{
+			var path = Path.Combine(Server.MapPath("~/Uploads/Questions/"), fileName);
+			HttpContext.Response.AddHeader("Content-Type", contentType);
+			RangeDownload(path, HttpContext.ApplicationInstance.Context);
+		}
 
-        //private void RangeDownload(string fullPath, HttpContext context)
-        //{
-        //    long size, start, end, length, fp = 0;
-        //    using (StreamReader reader = new StreamReader(fullPath))
-        //    {
-        //        size = reader.BaseStream.Length;
-        //        start = 0;
-        //        end = size - 1;
-        //        length = size;
+		//http://blogs.visigo.com/chriscoulson/easy-handling-of-http-range-requests-in-asp-net/
+		private void RangeDownload(string fullpath, HttpContext context)
+		{
+			long size, start, end, length, fp = 0;
+			using (StreamReader reader = new StreamReader(fullpath))
+			{
 
-        //        context.Response.AddHeader("Accept-Ranges", "0-" + size);
+				size = reader.BaseStream.Length;
+				start = 0;
+				end = size - 1;
+				length = size;
+				// Now that we've gotten so far without errors we send the accept range header
+				/* At the moment we only support single ranges.
+				 * Multiple ranges requires some more work to ensure it works correctly
+				 * and comply with the spesifications: http://www.w3.org/Protocols/rfc2616/rfc2616-sec19.html#sec19.2
+				 *
+				 * Multirange support annouces itself with:
+				 * header('Accept-Ranges: bytes');
+				 *
+				 * Multirange content must be sent with multipart/byteranges mediatype,
+				 * (mediatype = mimetype)
+				 * as well as a boundry header to indicate the various chunks of data.
+				 */
+				context.Response.AddHeader("Accept-Ranges", "0-" + size);
+				// header('Accept-Ranges: bytes');
+				// multipart/byteranges
+				// http://www.w3.org/Protocols/rfc2616/rfc2616-sec19.html#sec19.2
 
-        //        if (!String.IsNullOrEmpty(context.Request.ServerVariables["HTTP-RANGE"]))
-        //        {
-        //            long anotherStart = start;
-        //            long anotherEnd = end;
-        //            string[] arr_split = context.Request.ServerVariables["HTTP-RANGE"].Split(new char[] { Convert.ToChar("=") });
-        //            string range = arr_split[1];
+				if (!String.IsNullOrEmpty(context.Request.ServerVariables["HTTP_RANGE"]))
+				{
+					long anotherStart = start;
+					long anotherEnd = end;
+					string[] arr_split = context.Request.ServerVariables["HTTP_RANGE"].Split(new char[] { Convert.ToChar("=") });
+					string range = arr_split[1];
 
-        //            if (range.IndexOf(",") > -1)
-        //            {
-        //                context.Response.AddHeader("Content-Range", "bytes " + start + "-" + end + "/" + size);
-        //                throw new HttpException(416, "Requested Range Not Satisfiable");
-        //            }
+					// Make sure the client hasn't sent us a multibyte range
+					if (range.IndexOf(",") > -1)
+					{
+						// (?) Shoud this be issued here, or should the first
+						// range be used? Or should the header be ignored and
+						// we output the whole content?
+						context.Response.AddHeader("Content-Range", "bytes " + start + "-" + end + "/" + size);
+						throw new HttpException(416, "Requested Range Not Satisfiable");
 
-        //            if (range.StartsWith("-"))
-        //            {
-        //                anotherStart = size - Convert.ToInt64(range.Substring(1));
-        //            }
-        //            else
-        //            {
-        //                arr_split = range.Split(new char[] { Convert.ToChar("-") });
-        //                anotherStart = Convert.ToInt64(arr_split[0]);
-        //                long temp = 0;
-        //                anotherEnd = (arr_split.Length > 1 && Int64.TryParse(arr_split[1].ToString(), out temp)) ? Convert.ToInt64(arr_split[1]) : size;
-        //            }
+					}
 
-        //            anotherEnd = (anotherEnd > end) ? end : anotherEnd;
-        //            if (anotherStart > anotherEnd || anotherStart > size - 1 || anotherEnd >= size)
-        //            {
-        //                context.Response.AddHeader("Content-Range", "bytes " + start + "-" + end + "/" + size);
-        //                throw new HttpException(416, "Requested Range Not Satisfiable");
-        //            }
-        //            start = anotherStart;
-        //            end = anotherEnd;
+					// If the range starts with an '-' we start from the beginning
+					// If not, we forward the file pointer
+					// And make sure to get the end byte if spesified
+					if (range.StartsWith("-"))
+					{
+						// The n-number of the last bytes is requested
+						anotherStart = size - Convert.ToInt64(range.Substring(1));
+					}
+					else
+					{
+						arr_split = range.Split(new char[] { Convert.ToChar("-") });
+						anotherStart = Convert.ToInt64(arr_split[0]);
+						long temp = 0;
+						anotherEnd = (arr_split.Length > 1 && Int64.TryParse(arr_split[1].ToString(), out temp)) ? Convert.ToInt64(arr_split[1]) : size;
+					}
+					/* Check the range and make sure it's treated according to the specs.
+					 * http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html
+					 */
+					// End bytes can not be larger than $end.
+					anotherEnd = (anotherEnd > end) ? end : anotherEnd;
+					// Validate the requested range and return an error if it's not correct.
+					if (anotherStart > anotherEnd || anotherStart > size - 1 || anotherEnd >= size)
+					{
 
-        //            length = end - start + 1;
-        //            fp = reader.BaseStream.Seek(start, SeekOrigin.Begin);
-        //            context.Response.StatusCode = 206;
-        //        }
-        //    }
+						context.Response.AddHeader("Content-Range", "bytes " + start + "-" + end + "/" + size);
+						throw new HttpException(416, "Requested Range Not Satisfiable");
+					}
+					start = anotherStart;
+					end = anotherEnd;
 
-        //    context.Response.AddHeader("Content-Range", "bytes " + start + "-" + end + "/" + size);
-        //    context.Response.AddHeader("Content-Length", length.ToString());
-        //    context.Response.WriteFile(fullPath, fp, length);
-        //    context.Response.End();
-        //}
-        //#endregion
-    }
+					length = end - start + 1; // Calculate new content length
+					fp = reader.BaseStream.Seek(start, SeekOrigin.Begin);
+					context.Response.StatusCode = 206;
+				}
+			}
+			// Notify the client the byte range we'll be outputting
+			context.Response.AddHeader("Content-Range", "bytes " + start + "-" + end + "/" + size);
+			context.Response.AddHeader("Content-Length", length.ToString());
+			// Start buffered download
+			context.Response.WriteFile(fullpath, fp, length);
+			context.Response.End();
+
+		}
+		#endregion
+
+	}
 }
