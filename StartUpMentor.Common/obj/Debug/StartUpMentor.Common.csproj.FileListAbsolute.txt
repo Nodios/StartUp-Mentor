@@ -1,0 +1,5 @@
+D:\Users\Dino\Documents\Visual Studio 2013\Projects\StartUpMentor\StartUpMentor.Common\bin\Debug\StartUpMentor.Common.dll
+D:\Users\Dino\Documents\Visual Studio 2013\Projects\StartUpMentor\StartUpMentor.Common\bin\Debug\StartUpMentor.Common.pdb
+D:\Users\Dino\Documents\Visual Studio 2013\Projects\StartUpMentor\StartUpMentor.Common\obj\Debug\StartUpMentor.Common.csprojResolveAssemblyReference.cache
+D:\Users\Dino\Documents\Visual Studio 2013\Projects\StartUpMentor\StartUpMentor.Common\obj\Debug\StartUpMentor.Common.dll
+D:\Users\Dino\Documents\Visual Studio 2013\Projects\StartUpMentor\StartUpMentor.Common\obj\Debug\StartUpMentor.Common.pdb
