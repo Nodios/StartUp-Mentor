@@ -1,24 +1,363 @@
-﻿body {
-    padding-top: 50px;
-    padding-bottom: 20px;
+﻿html,
+body {
+    height: 100%;
 }
 
-/* Set padding to keep content from hitting the edges */
-.body-content {
-    padding-left: 15px;
-    padding-right: 15px;
+.carousel,
+.item,
+.active {
+  height: 100%;
 }
 
-/* Override the default bootstrap behavior where horizontal description lists 
-   will truncate terms that are too long to fit in the left column 
-*/
-.dl-horizontal dt {
-    white-space: normal;
+.carousel-inner {
+  height: 100%;
 }
 
-/* Set width on the form input elements since they're 100% wide by default */
-input,
-select,
-textarea {
-    max-width: 280px;
+.fill {
+  width: 100%;
+  height: 100%;
+  background-position: center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;
 }
+
+.container{
+	width: 80%;
+}
+
+footer {
+    margin: 50px 0;
+}
+
+.nav.navbar-nav > li > a{
+  color: #fff;
+  font-size: 20px;
+  font-weight: bold;
+  letter-spacing: -1px;
+  line-height: 1; 
+  text-align: center;
+}
+.nav.navbar-nav > li > a:hover{
+  color: #dc4225;
+  text-shadow: 2px 2px #000;
+  font-size: 20px;
+  font-weight: bold; letter-spacing: -1px;
+  line-height: 1; 
+  text-align: center;
+}
+
+.navbar-header > a{
+  color: #fff !important;
+  font-family: "Great Vibes", cursive;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+}
+.navbar-header > a:hover{
+  color: #dc4225 !important;
+  text-shadow: 2px 2px #000;
+  font-family: "Great Vibes", cursive;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+}
+
+@media (min-width: 768px){
+    .navbar-header > a{
+    color: #fff !important;
+    font-family: "Great Vibes", cursive;
+    font-size: 25px;
+    font-weight: bold;
+    text-align: center;
+  }
+  .navbar-header > a:hover{
+    color: #dc4225 !important;
+    text-shadow: 2px 2px #000;
+    font-family: "Great Vibes", cursive;
+    font-size: 25px;
+    font-weight: bold;
+    text-align: center;
+  }
+  .nav.navbar-nav > li > a, .nav.navbar-nav > li > a:hover{
+    font-size: 25px;
+  }
+}
+
+/* CUSTOMIZE THE NAVBAR
+-------------------------------------------------- */
+.navbar-default{
+  background-color: rgba(0,0,0,0.7);
+  border: 0px;
+}
+
+.navbar-top{
+  padding: 20px;
+  background-color: transparent;
+  border: 0px;
+}
+/* MARKETING CONTENT
+-------------------------------------------------- */
+
+/* Center align the text within the three columns below the carousel */
+.marketing .col-lg-4 {
+  margin-bottom: 20px;
+  text-align: center;
+}
+.marketing h2 {
+  font-weight: normal;
+}
+.marketing .col-lg-4 p {
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+
+/* Featurettes
+------------------------- */
+
+.featurette-divider {
+  margin: 80px 0; /* Space out the Bootstrap <hr> more */
+}
+
+/* Thin out the marketing headings */
+.featurette-heading {
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: -1px;
+}
+
+
+/* RESPONSIVE CSS
+-------------------------------------------------- */
+
+@media (min-width: 768px) {
+  /* Bump up size of carousel content */
+  .carousel-caption p {
+    margin-bottom: 20px;
+    font-size: 25px;
+    line-height: 1.4;
+  }
+
+  .featurette-heading {
+    font-size: 50px;
+  }
+}
+
+@media (min-width: 992px) {
+  .featurette-heading {
+    margin-top: 50px;
+  }
+}
+
+.hero--image{
+  background: url("Images/startup2.jpg") no-repeat;
+}
+
+.hero {
+  background-size: cover;
+  height: 100vh; 
+}
+.hero:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-image: linear-gradient(to bottom right, #002f4b, #dc4225);
+  opacity: .8; 
+}
+.hero .intro {
+  padding: 3rem;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%); 
+}
+.hero h1 {
+  color: #fff;
+  font-size: 1.5rem;
+  line-height: 1.5em;
+  letter-spacing: -0.025em;
+  font-weight: 300;
+  text-align: center;
+}
+.hero p {
+  color: #fff;
+  line-height: 1.75em;
+  font-weight: 200;
+  text-align: center;
+  margin-bottom: 2rem; 
+}
+.hero .tech-img {
+  background: url("Images/startup1.jpg") no-repeat center center;
+  background-size: cover;
+  height: 9rem;
+  width: 9rem;
+  border-radius: 50%;
+  display: block;
+  margin: 0 auto; 
+}
+@media only screen and (min-width: 40.063em) {
+  .hero .tech-img {
+    height: 18rem;
+    width: 18rem; 
+  }
+  .hero h1 {
+    padding-top: 4.5rem;
+    text-align: right;
+    font-size: 2.5rem; 
+  }
+  .hero p {
+    text-align: right; 
+  }
+}
+
+.jumbotron{
+  position: relative;
+  background-image: url("Images/startup1.jpg");
+  background-size: cover;
+  height: 100%;
+}
+
+@media only screen and (min-width: 40.063em) {
+  .jumbotron{
+    height: 50%;
+  }
+}
+
+.jumbotron:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-image: linear-gradient(to bottom right, #002f4b, #dc4225);
+  opacity: .8; 
+}
+
+/*HOVER FOR FIELDS */
+.hovereffect {
+  width: 100%;
+  height: 100%;
+  float: left;
+  margin: 10px;
+  overflow: hidden;
+  position: relative;
+  text-align: center;
+  cursor: default;
+  background: #dc4225;
+}
+
+.hovereffect .overlay {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  overflow: hidden;
+  top: 0;
+  left: 0;
+  padding: 50px 20px;
+}
+
+.hovereffect img {
+  display: block;
+  position: relative;
+  max-width: none;
+  width: calc(100% + 20px);
+  -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
+  transition: opacity 0.35s, transform 0.35s;
+  -webkit-transform: translate3d(-10px,0,0);
+  transform: translate3d(-10px,0,0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.hovereffect:hover img {
+  opacity: 0.4;
+  filter: alpha(opacity=40);
+  -webkit-transform: translate3d(0,0,0);
+  transform: translate3d(0,0,0);
+}
+
+.hovereffect h2 {
+  text-transform: uppercase;
+  color: #fff;
+  text-shadow: 2px 2px 5px #000;
+  text-align: center;
+  position: relative;
+  font-size: 17px;
+  overflow: hidden;
+  padding: 0.5em 0;
+  background-color: transparent;
+}
+
+.hovereffect h2:after {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: #fff;
+  content: '';
+  -webkit-transition: -webkit-transform 0.35s;
+  transition: transform 0.35s;
+  -webkit-transform: translate3d(-100%,0,0);
+  transform: translate3d(-100%,0,0);
+}
+
+.hovereffect:hover h2:after {
+  -webkit-transform: translate3d(0,0,0);
+  transform: translate3d(0,0,0);
+}
+
+.hovereffect a, .hovereffect p {
+  color: #FFF;
+  opacity: 0;
+  filter: alpha(opacity=0);
+  -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
+  transition: opacity 0.35s, transform 0.35s;
+  -webkit-transform: translate3d(100%,0,0);
+  transform: translate3d(100%,0,0);
+}
+
+.hovereffect:hover a, .hovereffect:hover p {
+  opacity: 1;
+  filter: alpha(opacity=100);
+  -webkit-transform: translate3d(0,0,0);
+  transform: translate3d(0,0,0);
+}
+
+/*------------------------------*/
+#ivan{
+  width: 300px;
+  height: 300px;
+  border-radius: 150px;
+  -webkit-border-radius: 150px;
+  -moz-border-radius: 150px;
+  background: url("Images/Ivan.jpg") no-repeat center center;
+  background-size: cover;
+  margin: 0 auto;
+}
+#luka{
+  width: 300px;
+  height: 300px;
+  border-radius: 150px;
+  -webkit-border-radius: 150px;
+  -moz-border-radius: 150px;
+  background: url("Images/Luka.jpg") no-repeat center center;
+  background-size: cover;
+  margin: 0 auto;
+}
+#dino{
+  width: 300px;
+  height: 300px;
+  border-radius: 150px;
+  -webkit-border-radius: 150px;
+  -moz-border-radius: 150px;
+  background: url("Images/Dino.jpg") no-repeat center center;
+  background-size: cover;
+  margin: 0 auto;
+}
+
