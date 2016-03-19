@@ -5,34 +5,48 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<section class="jumbotron hero">
+    <div class="row intro">
+        <div class="small-centered ">
+            <h1 class="hero-title">Do you want to start?</h1>
+            <p class="hero-paragraph">...and have plenty of questions?</p>
+            <p class="hero-paragraph">Ask our mentors a questions that will bring your startup up and running!</p>
+        </div>
+    </div>
+</section>
+<div class="after"></div>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            Field Name
-        </th>
-        <th></th>
-    </tr>
+<div class="container marketing">
+    <hr class="featurette-divider">
+    <div class="text-center">
+        <h3>Pick a field in which you have a question and start asking!</h3>
+    </div>
+    <hr class="featurette-divider">
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <!--first row-->
+    <div class="row">
+                @foreach (var item in Model)
+                {
+                    <div class="col-sm-6 col-md-4">
+                        <a href="@Url.Action("Index", "Question", new { fieldId = item.Id })">
+                            <div class="hovereffect">
+                                <img class="img-responsive" src="~/Content/Images/startup2.jpg" alt="">
+                                <div class="overlay">
+                                    <h2>@Html.DisplayFor(modelItem => item.Name)</h2>
+                                    <p>@Html.ActionLink("Edit", "Edit", new { id = item.Id }) <br />
+                                    @Html.ActionLink("Details", "Details", new { id = item.Id }) <br />
+                                    @Html.ActionLink("Delete", "Delete", new { id = item.Id }) </p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                }
+</div>
+    <hr class="featurette-divider">
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id }) |
-            @Html.ActionLink("Pick", "Index", "Question", new { fieldId=item.Id}, null)
-        </td>
-    </tr>
-}
+    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+    @Html.PagedListPager(Model, pageNumber => Url.Action("Index", new { pageNumber }))
+</div>
 
-</table>
-
-Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
-@Html.PagedListPager(Model, pageNumber => Url.Action("Index", new { pageNumber }))
