@@ -16,6 +16,8 @@
 
 <video width="100%" controls preload="auto">
     <source src="@Url.Content("~/Answer/GetVideoStream?fileName=" + System.IO.Path.GetFileName(Model.Question.VideoPath)+"&contentType=video/webm")" type="video/webm" />
+    <source src="@Url.Content("~/Answer/GetVideoStream?fileName=" + System.IO.Path.GetFileName(Model.Question.VideoPath)+"&contentType=video/mp4")" type="video/mp4" />
+    <source src="@Url.Content("~/Answer/GetVideoStream?fileName=" + System.IO.Path.GetFileName(Model.Question.VideoPath)+"&contentType=video/ogg")" type="video/ogg" />
    @* <source src="@Url.Content("~/Uploads/Questions/" + System.IO.Path.GetFileName(Model.Question.VideoPath))" type="video/mp4" />*@
 </video>
 
