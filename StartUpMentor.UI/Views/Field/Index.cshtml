@@ -32,7 +32,7 @@
                     <div class="col-sm-6 col-md-4">
                         <a href="@Url.Action("Index", "Question", new { fieldId = item.Id })">
                             <div class="hovereffect">
-                                <img class="img-responsive" src="~/Content/Images/startup2.jpg" alt="">
+                                <img class="img-responsive" src="@Url.Content("~/Uploads/FieldImages/" + System.IO.Path.GetFileName(item.ImagePath))" alt="">
                                 <div class="overlay">
                                     <h2>@Html.DisplayFor(modelItem => item.Name)</h2>
                                     <p>@Html.ActionLink("Edit", "Edit", new { id = item.Id }) <br />

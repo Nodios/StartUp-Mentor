@@ -14,7 +14,7 @@ using PagedList;
 
 namespace StartUpMentor.UI.Controllers
 {
-	public class QuestionController : Controller
+    public class QuestionController : Controller
     {
         protected IQuestionService Service { get; private set; }
         protected IFieldService FieldService { get; private set; }
@@ -80,7 +80,7 @@ namespace StartUpMentor.UI.Controllers
                     if (file != null && file.ContentLength > 0)
                     {
                         string[] validFileTypes = { "avi", "mpeg", "mp4","MP4","webm" };
-                        var fileName = Guid.NewGuid() + Path.GetFileName(file.FileName);
+                        var fileName = Path.GetFileName(file.FileName);
                         var contentLenght = file.ContentLength;
                         var contentType = file.ContentType;
                         bool isValidFile = false;

@@ -7,6 +7,7 @@ namespace StartUpMentor.Model.Common
     {
         Guid Id { get; set; }
         string Name { get; set; }
+        string ImagePath { get; set; }
 
         //Field can have many users - must define UserField table
         ICollection<IUser> Users { get; set; }

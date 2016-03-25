@@ -14,6 +14,7 @@ namespace StartUpMentor.DAL
 			context.Fields.Add(new FieldEntity()
 			{
 				Name = "IT",
+                ImagePath = "~/Uploads/FieldImages/startup1.jpg",
 				Questions = new List<QuestionEntity>()
 				{
 					new QuestionEntity()
@@ -47,7 +48,8 @@ namespace StartUpMentor.DAL
 			context.Fields.Add(new FieldEntity()
 			{
 				Name = "Economy",
-				Questions = new List<QuestionEntity>()
+                ImagePath = "~/Uploads/FieldImages/startup2.jpg",
+                Questions = new List<QuestionEntity>()
 				{
 					new QuestionEntity()
 					{

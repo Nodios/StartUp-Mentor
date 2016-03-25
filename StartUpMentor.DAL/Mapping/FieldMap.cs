@@ -11,7 +11,8 @@ namespace StartUpMentor.DAL.Mapping
             HasKey(t => t.Id);
 
             Property(t => t.Id).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
-            Property(t => t.Name).IsRequired().HasMaxLength(100);            
+            Property(t => t.Name).IsRequired().HasMaxLength(100);
+            Property(t => t.ImagePath).IsRequired();
         }
     }
 }

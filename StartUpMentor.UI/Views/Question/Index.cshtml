@@ -7,61 +7,62 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
-
-<p>
-    @{
-        if (Model.QuestionList.FirstOrDefault() != null) 
-        { 
-            <h3>Don't be shy to ask more questions!</h3>
-            @Html.ActionLink("Ask new question", "NewQuestion", new { fieldId = Model.FieldId})
+<div class="container marketing">
+    <p>
+        @{
+            if (Model.QuestionList.FirstOrDefault() != null)
+            {
+                <h3>Don't be shy to ask more questions!</h3>
+                @Html.ActionLink("Ask new question", "NewQuestion", new { fieldId = Model.FieldId })
+            }
+            else
+            {
+                <h3>Looks like there are no questions. Consider asking one!</h3>
+                @Html.ActionLink("Ask your first question", "NewQuestion", new { fieldId = Model.FieldId })
+            }
         }
-        else
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                Title
+            </th>
+            <th>
+                Text
+            </th>
+            <th>
+                User
+            </th>
+            <th>
+                Date
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model.QuestionList)
         {
-            <h3>Looks like there are no questions. Consider asking one!</h3>
-            @Html.ActionLink("Ask your first question", "NewQuestion", new{fieldId = Model.FieldId})
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.QuestionText)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Details", "Index", "Answer", new { questionId = item.Id }, null) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                </td>
+            </tr>
         }
-}
-</p>
-<table class="table">
-    <tr>
-        <th>
-            Title
-        </th>
-        <th>
-            Text
-        </th>
-        <th>
-            User
-        </th>
-        <th>
-            Date
-        </th>
-        <th></th>
-    </tr>
 
-@foreach (var item in Model.QuestionList) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Title)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.QuestionText)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UserName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Date)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Index", "Answer", new { questionId=item.Id }, null) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
-
-</table>
-Page @(Model.QuestionList.PageCount < Model.QuestionList.PageNumber ? 0 : Model.QuestionList.PageNumber) of @Model.QuestionList.PageCount
-@Html.PagedListPager(Model.QuestionList, pageNumber => Url.Action("Index", new { pageNumber }))
+    </table>
+    Page @(Model.QuestionList.PageCount < Model.QuestionList.PageNumber ? 0 : Model.QuestionList.PageNumber) of @Model.QuestionList.PageCount
+    @Html.PagedListPager(Model.QuestionList, pageNumber => Url.Action("Index", new { pageNumber }))
+</div>

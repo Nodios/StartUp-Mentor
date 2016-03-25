@@ -7,6 +7,8 @@ using StartUpMentor.UI.Models;
 using StartUpMentor.Model;
 using System.Net;
 using StartUpMentor.Model.Common;
+using System.Web;
+using System.IO;
 
 namespace StartUpMentor.UI.Controllers
 {
@@ -26,26 +28,63 @@ namespace StartUpMentor.UI.Controllers
             return View(fields);
         }
 
-        // GET: Field/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Field/Create
         [HttpPost]
-        public async Task<ActionResult> Create(FieldViewModel fvm)
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Create(FieldViewModel fvm, HttpPostedFileBase file)
         {
-            if (ModelState.IsValid)
+            try
             {
-                await Service.AddAsnyc(AutoMapper.Mapper.Map<Field>(fvm));
+                if (ModelState.IsValid)
+                {
+                    if (file != null && file.ContentLength > 0)
+                    {
+                        string[] validFileTypes = { "jpg", "jpeg", "png", "bmp" };
+                        var imageName = Path.GetFileName(file.FileName);
+                        bool isValidFile = false;
+                        var imagePath = Path.Combine(Server.MapPath("~/Uploads/FieldImages"), imageName);
+                        string ext = Path.GetExtension(imagePath);
 
-                return RedirectToAction("Index");
+                        for (int i = 0; i < validFileTypes.Length; i++)
+                        {
+                            if (ext == "." + validFileTypes[i])
+                            {
+                                isValidFile = true;
+                                break;
+                            }
+                        }
+
+                        if (!isValidFile)
+                        {
+                            //return Content("<script language='javascript' type='text/javascript'>alert('Error, wrong image type');</script>");
+                            ViewBag.ErrorType = "Image format not supported. Try jpg, png, bmp.";
+                            return RedirectToAction("Index");
+                        }
+                        else
+                        {
+                            file.SaveAs(imagePath);
+
+                            fvm.ImagePath = imagePath;
+
+                            await Service.AddAsnyc(AutoMapper.Mapper.Map<Field>(fvm));
+
+                            return RedirectToAction("Index");
+                        }
+                    }
+                }
+                return View(fvm);
             }
-            return View(fvm);
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
         }
 
-        // GET: Field/Edit/5
         public async Task<ActionResult> Edit(Guid id)
         {
             if (id == null) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -57,7 +96,6 @@ namespace StartUpMentor.UI.Controllers
             return View(field);
         }
 
-        // POST: Field/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit(FieldViewModel fvm)

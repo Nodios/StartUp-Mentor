@@ -309,6 +309,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Content\Images\" />
     <Folder Include="Uploads\Answers\" />
+    <Folder Include="Uploads\FieldImages\" />
     <Folder Include="Uploads\Questions\" />
   </ItemGroup>
   <ItemGroup>

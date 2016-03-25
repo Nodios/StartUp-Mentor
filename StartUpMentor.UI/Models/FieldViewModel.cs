@@ -7,6 +7,7 @@ namespace StartUpMentor.UI.Models
     {
         public Guid Id { get; set; }
         public string Name { get; set; }
+        public string ImagePath { get; set; }
 
         //Field can have many users - must define UserField table
         public virtual ICollection<UserViewModel> Users { get; set; }
