@@ -6,8 +6,16 @@
 @{
     ViewBag.Title = "Index";
 }
-
+<section class="jumbotron hero" id="startup-questions">
+    <div class="row intro">
+        <div class="small-centered ">
+            <h1 class="hero-title">We are new team</h1>
+            <p class="hero-paragraph">Still advancing, still learning, still developing our own startup</p>
+        </div>
+    </div>
+</section>
 <div class="container marketing">
+    
     <p>
         @{
             if (Model.QuestionList.FirstOrDefault() != null)

@@ -22,7 +22,9 @@ body {
   background-size: cover;
   -o-background-size: cover;
 }
-
+.small-centered{
+    padding-top: 100px;
+}
 .container{
 	width: 80%;
 }
@@ -83,6 +85,11 @@ footer {
   .nav.navbar-nav > li > a, .nav.navbar-nav > li > a:hover{
     font-size: 25px;
   }
+
+  .jumbotron{
+      padding-top: 100px;
+      padding-bottom: 70px;
+  }
 }
 
 /* CUSTOMIZE THE NAVBAR
@@ -93,8 +100,8 @@ footer {
 }
 
 .navbar-top{
-  padding: 20px;
-  background-color: transparent;
+  padding: 5px;
+  /*background-color: transparent;*/
   border: 0px;
 }
 /* MARKETING CONTENT
@@ -170,7 +177,7 @@ footer {
   opacity: .8; 
 }
 .hero .intro {
-  padding: 3rem;
+  padding-top: 7rem;
   position: relative;
   top: 50%;
   transform: translateY(-50%); 
@@ -216,15 +223,26 @@ footer {
 
 .jumbotron{
   position: relative;
-  background-image: url("Images/startup1.jpg");
   background-size: cover;
   height: 100%;
+  padding-top: 100px;
+}
+/* image paths */
+#startup-questions{
+    background-image: url("Images/startup-questions2.jpg");
+}
+#service{
+    background-image: url("Images/startup2.jpg");
+}
+#about{
+    background-image: url("Images/about-us.jpg");
 }
 
 @media only screen and (min-width: 40.063em) {
-  .jumbotron{
-    height: 50%;
-  }
+    .jumbotron{
+        padding-top: 60px;
+        height: 50%;
+    }
 }
 
 .jumbotron:before {
