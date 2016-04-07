@@ -64,11 +64,21 @@ namespace StartUpMentor.UI.Models
 
     public class RegisterViewModel
     {
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
+		[Required]
+		[Display(Name = "First name")]
+		public string FirstName { get; set; }
+
+		[Required]
+		[Display(Name = "Last name")]
+		public string LastName { get; set; }
+
         public string Contact { get; set; }
-        public string UserName { get; set; }
-        [Required]
+
+		[Required]
+		[Display(Name = "Username")]
+		public string UserName { get; set; }
+        
+		[Required]
         [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }

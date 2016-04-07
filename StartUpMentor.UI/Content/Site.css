@@ -103,6 +103,7 @@ footer {
   padding: 5px;
   /*background-color: transparent;*/
   border: 0px;
+  margin-bottom:0px;
 }
 /* MARKETING CONTENT
 -------------------------------------------------- */
@@ -156,6 +157,13 @@ footer {
   .featurette-heading {
     margin-top: 50px;
   }
+}
+
+.frontpage-image
+{
+  position: relative;
+  top: 0px;
+  left: 0px;  
 }
 
 .hero--image{

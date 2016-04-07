@@ -62,6 +62,10 @@ namespace StartUpMentor.Service
 
 		public async Task<bool> VerifyPassword(string password)
 		{
+			if(password == null)
+			{
+				return false;
+			}
 			return System.Text.RegularExpressions.Regex.IsMatch(password, @"^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!#$%&@*?=])");
 		}
 

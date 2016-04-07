@@ -12,7 +12,7 @@
 
 </head>
 <body>
-    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <nav class="navbar navbar-default navbar-top" role="navigation">
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
@@ -36,6 +36,7 @@
                     <li>
                         @Html.ActionLink("Contact", "Contact", "Home")
                     </li>
+                        @Html.Partial("_LoginPartial");
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -44,10 +45,21 @@
     </nav>
     <div>
         @RenderBody()
-        <hr />
-        <footer class="container">
-            <p>&copy; @DateTime.Now.Year - Global Startup Consultant</p>
+
+        <hr class="featurette-divider">
+        <!-- Footer -->
+        <footer>
+            <div class="row">
+                <div class="col-lg-11 col-lg-push-1">
+                    <p>Copyright &copy; <a href="#">globalstartupconsultant.com</a> 2016</p>
+                </div>
+            </div>
+            <!-- /.row -->
         </footer>
+        @*<footer class="container">
+            <hr />
+            <p>&copy; @DateTime.Now.Year - Global Startup Consultant</p>
+        </footer>    *@
     </div>
 
     @Scripts.Render("~/bundles/jquery")

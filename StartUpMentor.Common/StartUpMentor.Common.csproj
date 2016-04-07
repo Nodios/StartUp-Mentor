@@ -43,8 +43,10 @@
   <ItemGroup>
     <Compile Include="ConnectionStrings.cs" />
     <Compile Include="Filters\GenericFilter.cs" />
-    <Compile Include="ImageConversion\ImageConversion.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ImageConversion\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

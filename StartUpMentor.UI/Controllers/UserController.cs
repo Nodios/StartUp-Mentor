@@ -57,7 +57,7 @@ namespace StartUpMentor.UI.Controllers
 			var userPrincipal = await SecurityService.Authenticate(cookie.Value);
 			HttpContext.User = userPrincipal;
 
-			return View("Index");
+			return RedirectToAction("Index", "Home");
 		}
 
 		public ActionResult Login()
@@ -88,8 +88,8 @@ namespace StartUpMentor.UI.Controllers
 
 				Response.SetCookie(cookies);
 			}
-			
-			return View(viewModel);
+
+			return RedirectToAction("Index", "Home");
 		}
 
 		[HttpPost]
@@ -108,7 +108,7 @@ namespace StartUpMentor.UI.Controllers
 				}
 			}
 
-			return View("Index");
+			return RedirectToAction("Index", "Home");
 		}
 
 		public ActionResult Manage()
