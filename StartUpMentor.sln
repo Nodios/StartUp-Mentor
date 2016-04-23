@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.40629.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StartUpMentor.Common", "StartUpMentor.Common\StartUpMentor.Common.csproj", "{262D0BFB-26C7-4490-A6D2-12A9196CC7F2}"
 EndProject
@@ -20,6 +20,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StartUpMentor.Service.Common", "StartUpMentor.Service.Common\StartUpMentor.Service.Common.csproj", "{DD86BFEC-EAF4-4235-876E-3564C86740EF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StartUpMentor.Service", "StartUpMentor.Service\StartUpMentor.Service.csproj", "{E97EC1E5-637A-4255-9C5E-94A580EF3F02}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StartUpMentor.WebApi", "StartUpMentor.WebApi\StartUpMentor.WebApi.csproj", "{36E14AC7-9467-4061-8D3B-30D941EF8B48}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -63,6 +65,10 @@ Global
 		{E97EC1E5-637A-4255-9C5E-94A580EF3F02}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E97EC1E5-637A-4255-9C5E-94A580EF3F02}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E97EC1E5-637A-4255-9C5E-94A580EF3F02}.Release|Any CPU.Build.0 = Release|Any CPU
+		{36E14AC7-9467-4061-8D3B-30D941EF8B48}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{36E14AC7-9467-4061-8D3B-30D941EF8B48}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{36E14AC7-9467-4061-8D3B-30D941EF8B48}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{36E14AC7-9467-4061-8D3B-30D941EF8B48}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

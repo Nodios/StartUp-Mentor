@@ -7,76 +7,79 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<div class="container marketing top-padding">
+    <h3>Answers for question: @Html.DisplayFor(m => m.Question.Title)</h3> 
+    <div>
+        @Html.ActionLink("Back to questions", "Index", "Question", new { fieldId = Model.Question.FieldId }, null)
+    </div>
+    
+    <br />
 
-<div>
-    @Html.ActionLink("Back to questions", "Index", "Question", new { fieldId = Model.Question.FieldId }, null)
+    <video width="100%" controls preload="auto">
+        <source src="@Url.Content("~/Answer/GetVideoStream?fileName=" + System.IO.Path.GetFileName(Model.Question.VideoPath)+"&contentType=video/webm&qa=question")" type="video/webm" />
+        <source src="@Url.Content("~/Answer/GetVideoStream?fileName=" + System.IO.Path.GetFileName(Model.Question.VideoPath)+ "&contentType=video/mp4&qa=question")" type="video/mp4" />
+        <source src="@Url.Content("~/Answer/GetVideoStream?fileName=" + System.IO.Path.GetFileName(Model.Question.VideoPath)+ "&contentType=video/ogg&qa=question")" type="video/ogg" />
+    </video>
+
+
+    <p>
+        @{        
+        if (Model.AnswerList.FirstOrDefault() != null) 
+        {
+                <h3>If you have more to say, do it!</h3>
+                @Html.ActionLink("Reply", "NewAnswer", new { questionId = Model.QuestionId })
+        }
+        else
+        {
+                <h3>There are no answers yet.</h3>
+                @Html.ActionLink("Reply", "NewAnswer", new { questionId = Model.QuestionId })
+        }
+    }
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                Answer
+            </th>
+            <th>
+                User
+            </th>
+            <th>
+                Date
+            </th>
+            <th>
+                Last edited on
+            </th>
+        </tr>
+
+    @foreach (var item in Model.AnswerList) {
+        <tr>
+            <td>
+                <video width="100%" controls preload="auto">
+                    <source src="@Url.Content("~/Answer/GetVideoStream?fileName=" + System.IO.Path.GetFileName(item.VideoPath)+"&contentType=video/webm&qa=answer")" type="video/webm" />
+                    <source src="@Url.Content("~/Answer/GetVideoStream?fileName=" + System.IO.Path.GetFileName(item.VideoPath)+"&contentType=video/mp4&qa=answer")" type="video/mp4" />
+                    <source src="@Url.Content("~/Answer/GetVideoStream?fileName=" + System.IO.Path.GetFileName(item.VideoPath)+"&contentType=video/ogg&qa=answer")" type="video/ogg" />
+                </video>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateLastEdited)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.Id })
+                @*@Html.ActionLink("Details", "Details", new { id=item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.Id })*@
+            </td>
+        </tr>
+    }
+
+    </table>
+    Page @(Model.AnswerList.PageCount < Model.AnswerList.PageNumber ? 0 : Model.AnswerList.PageNumber) of @Model.AnswerList.PageCount
+    @Html.PagedListPager(Model.AnswerList, pageNumber => Url.Action("Index", new { pageNumber }))
+
 </div>
-<br />
-
-<video width="100%" controls preload="auto">
-    <source src="@Url.Content("~/Answer/GetVideoStream?fileName=" + System.IO.Path.GetFileName(Model.Question.VideoPath)+"&contentType=video/webm")" type="video/webm" />
-    <source src="@Url.Content("~/Answer/GetVideoStream?fileName=" + System.IO.Path.GetFileName(Model.Question.VideoPath)+"&contentType=video/mp4")" type="video/mp4" />
-    <source src="@Url.Content("~/Answer/GetVideoStream?fileName=" + System.IO.Path.GetFileName(Model.Question.VideoPath)+"&contentType=video/ogg")" type="video/ogg" />
-   @* <source src="@Url.Content("~/Uploads/Questions/" + System.IO.Path.GetFileName(Model.Question.VideoPath))" type="video/mp4" />*@
-</video>
-
-
-<p>
-    @{        
-    if (Model.AnswerList.FirstOrDefault() != null) 
-    {
-            <h3>If you have more to say, do it!</h3>
-            @Html.ActionLink("Reply", "NewAnswer", new { questionId = Model.QuestionId })
-    }
-    else
-    {
-            <h3>There are no answers yet.</h3>
-            @Html.ActionLink("Reply", "NewAnswer", new { questionId = Model.QuestionId })
-    }
-}
-</p>
-<table class="table">
-    <tr>
-        <th>
-            Answer
-        </th>
-        <th>
-            User
-        </th>
-        <th>
-            Date
-        </th>
-        <th>
-            Last edited on
-        </th>
-    </tr>
-
-@foreach (var item in Model.AnswerList) {
-    <tr>
-        <td>
-            <video width="100%" controls preload="metadata">
-                <source src="@Url.Content("~/Uploads/Answers/" + System.IO.Path.GetFileName(item.VideoPath))" type="video/mp4" />
-                <source src="@Url.Content("~/Uploads/Answers/" + System.IO.Path.GetFileName(item.VideoPath))" type="video/webm" />
-            </video>
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UserName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Date)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DateLastEdited)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id })
-            @*@Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })*@
-        </td>
-    </tr>
-}
-
-</table>
-Page @(Model.AnswerList.PageCount < Model.AnswerList.PageNumber ? 0 : Model.AnswerList.PageNumber) of @Model.AnswerList.PageCount
-@Html.PagedListPager(Model.AnswerList, pageNumber => Url.Action("Index", new { pageNumber }))

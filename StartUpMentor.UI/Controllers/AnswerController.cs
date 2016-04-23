@@ -159,11 +159,24 @@ namespace StartUpMentor.UI.Controllers
         }
 
 		#region Video stream
-		public void GetVideoStream(string fileName, string contentType)
+		public void GetVideoStream(string fileName, string contentType, string qa)
 		{
-			var path = Path.Combine(Server.MapPath("~/Uploads/Questions/"), fileName);
-			HttpContext.Response.AddHeader("Content-Type", contentType);
-			RangeDownload(path, HttpContext.ApplicationInstance.Context);
+            if(qa == "question")
+            {
+                var path = Path.Combine(Server.MapPath("~/Uploads/Questions/"), fileName);
+                HttpContext.Response.AddHeader("Content-Type", contentType);
+                RangeDownload(path, HttpContext.ApplicationInstance.Context);
+            }
+            else if(qa == "answer")
+            {
+                var path = Path.Combine(Server.MapPath("~/Uploads/Answers/"), fileName);
+                HttpContext.Response.AddHeader("Content-Type", contentType);
+                RangeDownload(path, HttpContext.ApplicationInstance.Context);
+            }
+
+			//var path = Path.Combine(Server.MapPath("~/Uploads/Questions/"), fileName);
+			//HttpContext.Response.AddHeader("Content-Type", contentType);
+			//RangeDownload(path, HttpContext.ApplicationInstance.Context);
 		}
 
 		//http://blogs.visigo.com/chriscoulson/easy-handling-of-http-range-requests-in-asp-net/

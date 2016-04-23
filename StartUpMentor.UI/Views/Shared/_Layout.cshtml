@@ -37,6 +37,7 @@
                         @Html.ActionLink("Contact", "Contact", "Home")
                     </li>
                 </ul>
+                @Html.Partial("_LoginPartial")
             </div>
             <!-- /.navbar-collapse -->
         </div>
@@ -45,9 +46,6 @@
     <div>
         @RenderBody()
         <hr />
-        <footer class="container">
-            <p>&copy; @DateTime.Now.Year - Global Startup Consultant</p>
-        </footer>
     </div>
 
     @Scripts.Render("~/bundles/jquery")

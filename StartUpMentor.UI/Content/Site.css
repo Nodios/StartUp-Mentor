@@ -28,6 +28,9 @@ body {
 .container{
 	width: 80%;
 }
+.top-padding{
+    padding-top: 100px;
+}
 
 footer {
     margin: 50px 0;
