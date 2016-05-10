@@ -1,0 +1,37 @@
+@model System.Collections.Generic.IEnumerable<StartUpMentor.Model.Common.IUser>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+@{
+    ViewBag.Title = "Index";
+}
+<section class="jumbotron hero" id="startup-questions">
+    <div class="row intro">
+        <div class="small-centered ">
+            <h1 class="hero-title">We are new team</h1>
+            <p class="hero-paragraph">Still advancing, still learning, still developing our own startup</p>
+        </div>
+    </div>
+</section>
+<div class="container marketing">
+    <table class="table">
+        <tr>
+            <th>
+                Username
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+            <td>
+                @Html.ActionLink("Ask question", "AskUser", "Question", new { userId = item.Id }, null)
+            </td>
+        </tr>
+        }
+    </table>
+</div>
