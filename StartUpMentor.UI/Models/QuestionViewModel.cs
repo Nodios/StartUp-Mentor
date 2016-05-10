@@ -19,8 +19,10 @@ namespace StartUpMentor.UI.Models
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
 		 public DateTime Date { get; set; }
 
-        //FK for Field
-        public Guid FieldId { get; set; }
+		public Guid? QuestionFor { get; set; }
+
+		//FK for Field
+		public Guid FieldId { get; set; }
         //One to one - Question can be related to one Field
         public virtual FieldViewModel Field { get; set; }
 		

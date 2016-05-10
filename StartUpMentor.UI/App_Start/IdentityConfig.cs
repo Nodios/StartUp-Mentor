@@ -56,20 +56,30 @@ namespace StartUpMentor.UI
 		protected new virtual bool AuthorizeCore(HttpContextBase httpContext)
 		{
 			var user = httpContext.User;
-			var roles = base.Roles.Split(',');
-			foreach(var role in roles)
+			
+			if(!user.Identity.IsAuthenticated)
 			{
-				if (user.IsInRole(role))
+				return false;
+			}
+
+			if (base.Roles != "")
+			{
+				var roles = base.Roles.Split(',');
+				foreach (var role in roles)
 				{
-					return true;
+					if(!user.IsInRole(role))
+					{
+						return false;
+					}
 				}
 			}
-			
-			return false;
+			return true;
 		}
 
 		protected new void HandleUnauthorizedRequest(System.Web.Mvc.AuthorizationContext filterContext)
 		{
+			HttpContext.Current.Response.Redirect("/user/login", true);
+			HttpContext.Current.Response.End();
 			return;
 		}
 

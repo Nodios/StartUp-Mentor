@@ -17,7 +17,12 @@ namespace StartUpMentor.Service
             Repository = repository;
         }
 
-        public async Task<IField> GetAsync(Guid id)
+		public async Task<System.Collections.Generic.IEnumerable<IField>> GetAllFields()
+		{
+			return await Repository.GetAllFields();
+		}
+
+		public async Task<IField> GetAsync(Guid id)
         {
             return await Repository.GetAsync(id);
         }

@@ -12,6 +12,8 @@ namespace StartUpMentor.Model.Common
         string UserName { get; set; }
         DateTime Date { get; set; }
 
+		Guid? QuestionFor { get; set; }
+
         //FK for Field
         Guid FieldId { get; set; }
         //One to one - Question can be related to one Field

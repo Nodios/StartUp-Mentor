@@ -44,6 +44,14 @@
                     </div>
                 }
 </div>
+    <div class="row">
+        <div class="col-sm-6 col-md-4">
+            <h3>
+                @Html.ActionLink("Ask user.", "List", "User", null, null)
+            </h3>
+        </div>
+
+    </div>
     <hr class="featurette-divider">
 
     Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount

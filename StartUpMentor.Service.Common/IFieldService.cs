@@ -8,7 +8,8 @@ namespace StartUpMentor.Service.Common
 {
 	public interface IFieldService
     {
-        Task<IField> GetAsync(Guid id);
+		Task<System.Collections.Generic.IEnumerable<IField>> GetAllFields();
+		Task<IField> GetAsync(Guid id);
         Task<IEnumerable<IField>> GetRangeAsync(GenericFilter filter = null);
         Task<int> AddAsnyc(IField field);
         Task<int> UpdateAsync(IField field);

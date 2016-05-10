@@ -130,6 +130,13 @@ namespace StartUpMentor.UI.Controllers
 		{
 			return View("Manage");
 		}
+
+		[HttpGet]
+		public async Task<ActionResult> List()
+		{
+			var userList = await Service.GetAllUsers();
+			return View(userList);
+		}
 	}
 
 }

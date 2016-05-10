@@ -56,11 +56,12 @@ namespace StartUpMentor.Model
 	{
 		public UserIdentity() {}
 
-		public UserIdentity(string Name, bool IsAuthenticated, string AuthenticationType, ICollection<string> roles) 
+		public UserIdentity(string Name, Guid userId, bool IsAuthenticated, string AuthenticationType, ICollection<string> roles) 
 		{
 			this.Name = Name;
 			this.IsAuthenticated = IsAuthenticated;
 			this.AuthenticationType = AuthenticationType;
+			this.userId = userId;
 		}
 
 		public string AuthenticationType { get; private set; }
@@ -68,5 +69,7 @@ namespace StartUpMentor.Model
 		public bool IsAuthenticated { get; private set; }
 
 		public string Name { get;  private set; }
+
+		public Guid userId { get; private set; }
 	}
 }

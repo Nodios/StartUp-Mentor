@@ -8,7 +8,8 @@ namespace StartUpMentor.Repository.Common
 {
 	public interface IFieldRepository
     {
-        Task<IField> GetAsync(Guid id);
+		Task<IEnumerable<IField>> GetAllFields();
+		Task<IField> GetAsync(Guid id);
         Task<IEnumerable<IField>> GetRangeAsync(GenericFilter filter = null);
 
         Task<int> AddAsync(IField field);

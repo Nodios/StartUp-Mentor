@@ -49,7 +49,7 @@ namespace StartUpMentor.Service
 			
 			if(repositoryToken != null && repositoryToken.tokenHash == tokenHash)
 			{
-				identity = SecurityFactory.CreateIdentity(UserName, true, "TokenAuthentication", null);
+				identity = SecurityFactory.CreateIdentity(UserName, userId , true, "TokenAuthentication", null);
 			}
 			else
 			{
@@ -69,7 +69,7 @@ namespace StartUpMentor.Service
 		{
 			if(user != null)
 			{
-				return SecurityFactory.CreateIdentity(user.UserName, isAuthenticated, "TokenAuth", AutoMapper.Mapper.Map<ICollection<string>>(user.Roles));
+				return SecurityFactory.CreateIdentity(user.UserName, user.Id, isAuthenticated, "TokenAuth", AutoMapper.Mapper.Map<ICollection<string>>(user.Roles));
 			}
 			return SecurityFactory.CreateIdentity();
 		}

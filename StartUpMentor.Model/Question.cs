@@ -15,8 +15,10 @@ namespace StartUpMentor.Model
         public string UserName { get; set; }
         public DateTime Date { get; set; }
 
-        //FK for Field
-        public Guid FieldId { get; set; }
+		public Guid? QuestionFor { get; set; }
+
+		//FK for Field
+		public Guid FieldId { get; set; }
         //One to one - Question can be related to one Field
         public virtual IField Field { get; set; }
         

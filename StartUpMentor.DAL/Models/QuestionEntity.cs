@@ -12,6 +12,8 @@ namespace StartUpMentor.DAL.Models
         public string VideoPath { get; set; }
         public string UserName { get; set; }
         public DateTime Date { get; set; }
+		
+		public Guid? QuestionFor { get; set; }
 
         //FK for Field
         public Guid FieldId { get; set; }

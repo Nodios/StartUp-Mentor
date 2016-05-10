@@ -20,7 +20,14 @@ namespace StartUpMentor.Repository
             Repository = repository;
         }
 
-        public async Task<IField> GetAsync(Guid id)
+		public async Task<IEnumerable<IField>> GetAllFields()
+		{
+			var fields = Repository.GetWhere<FieldEntity>().AsEnumerable<FieldEntity>();
+			var result = AutoMapper.Mapper.Map<IEnumerable<IField>>(fields);
+			return result;
+		}
+
+		public async Task<IField> GetAsync(Guid id)
         {
             try
             {
