@@ -137,7 +137,7 @@ namespace StartUpMentor.UI.Controllers
 				throw ex;
 			}
 
-			return RedirectToAction("AskUser", new { userId = userId });
+			//return RedirectToAction("AskUser", new { userId = userId });
 		}
 		
 		public ActionResult NewQuestion(Guid fieldId)
